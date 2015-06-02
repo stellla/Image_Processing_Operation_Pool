@@ -23,7 +23,7 @@ using System.Security.Cryptography;
 namespace Image_Processing_Operation_Pool
 {
 
-    public partial class Form1 :MetroForm//DevExpress.XtraEditors.XtraForm
+    public partial class Form1 : MetroForm//DevExpress.XtraEditors.XtraForm
     {
 
         List<string> _funcNames = new List<string>();
@@ -385,23 +385,6 @@ namespace Image_Processing_Operation_Pool
 
 
 
-
-
-        //StreamWriter file = new System.IO.StreamWriter("script.m");
-        //file.WriteLine("my script:");
-        //foreach (RootObject r in lbScript.Items)
-        //{
-        //    file.WriteLine("function " + r.functionName + ":");
-        //    foreach (var param in r.parameters)
-        //    {
-        //        file.Write(param.type.ToString() + ": " + param.Current_Value + ", ");
-
-        //    }
-        //    file.WriteLine("");
-
-        //}
-
-        //file.Close();  
 
     }
 }

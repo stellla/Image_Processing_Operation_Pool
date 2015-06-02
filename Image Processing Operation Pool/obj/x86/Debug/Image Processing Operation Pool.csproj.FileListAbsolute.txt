@@ -23,3 +23,9 @@ C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Image Processing Operat
 C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Image Processing Operation Pool\Image Processing Operation Pool\bin\Debug\Simplify.Windows.Forms.xml
 C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Image Processing Operation Pool\Image Processing Operation Pool\bin\Debug\MetroFramework.dll
 C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Image Processing Operation Pool\Image Processing Operation Pool\bin\Debug\Newtonsoft.Json.dll
+C:\Users\StellaMel\Desktop\Operation_Pool\Image Processing Operation Pool\bin\Debug\Image Processing Operation Pool.exe.config
+C:\Users\StellaMel\Desktop\Operation_Pool\Image Processing Operation Pool\obj\x86\Debug\Image Processing Operation Pool.exe
+C:\Users\StellaMel\Desktop\Operation_Pool\Image Processing Operation Pool\obj\x86\Debug\Image Processing Operation Pool.pdb
+C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Processing Operation Pool\bin\Debug\Image Processing Operation Pool.exe.config
+C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Processing Operation Pool\obj\x86\Debug\Image Processing Operation Pool.exe
+C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Processing Operation Pool\obj\x86\Debug\Image Processing Operation Pool.pdb
