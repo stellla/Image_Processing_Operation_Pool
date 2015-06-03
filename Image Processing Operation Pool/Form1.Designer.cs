@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            iTalk.ControlRenderer controlRenderer5 = new iTalk.ControlRenderer();
-            iTalk.MSColorTable msColorTable5 = new iTalk.MSColorTable();
+            iTalk.ControlRenderer controlRenderer1 = new iTalk.ControlRenderer();
+            iTalk.MSColorTable msColorTable1 = new iTalk.MSColorTable();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lbFuncToolBox = new System.Windows.Forms.ListBox();
             this.lbScript = new System.Windows.Forms.ListBox();
@@ -211,9 +211,9 @@
             this.chooseImageToolStripMenuItem});
             this.iTalk_MenuStrip1.Location = new System.Drawing.Point(20, 60);
             this.iTalk_MenuStrip1.Name = "iTalk_MenuStrip1";
-            controlRenderer5.ColorTable = msColorTable5;
-            controlRenderer5.RoundedEdges = true;
-            this.iTalk_MenuStrip1.Renderer = controlRenderer5;
+            controlRenderer1.ColorTable = msColorTable1;
+            controlRenderer1.RoundedEdges = true;
+            this.iTalk_MenuStrip1.Renderer = controlRenderer1;
             this.iTalk_MenuStrip1.Size = new System.Drawing.Size(780, 24);
             this.iTalk_MenuStrip1.TabIndex = 27;
             this.iTalk_MenuStrip1.Text = "iTalk_MenuStrip1";

@@ -193,12 +193,11 @@ namespace Image_Processing_Operation_Pool
                 string file = openFileDialog1.FileName;
                 try
                 {
-                    //int count = 0;
-                    string json = File.ReadAllText(Environment.CurrentDirectory + @"\JSON.txt");
+                    int count = 0;
+                    string json = File.ReadAllText(openFileDialog1.InitialDirectory + openFileDialog1.FileName);
 
                     // parse json file and return list of functions as objects
                     _listroot.functions = parser.parseText(json);
-                    _hashtable = parser.createHashTable(_listroot.functions);
                     lbFuncToolBox.DisplayMember = "functionName";
                     lbScript.DisplayMember = "functionName";
 
@@ -213,17 +212,17 @@ namespace Image_Processing_Operation_Pool
                         //tcFuncTab.Controls.Add( r.createForm(r.functionName, _hashtable));                   
                     }
                     //*******************TEST*******************************************************************
-                    //foreach (RootObject root in listroot.functions)
-                    //{
-                    //    //count.count++;
-                    //    Debug.Write(" " + root.functionName + " " + root.description);
-                    //    foreach (Parameter param in root.parameters)
-                    //    {
-                    //        Debug.Write(" " + param.Name + " " + param.valueType + " " + param.type + " " + param.Default + " " + param.Description + " " + param.Current_Value + "\n");
-                    //    }
+                    foreach (RootObject root in _listroot.functions)
+                    {
+                        //count.count++;
+                        Debug.Write(" " + root.functionName + " " + root.description);
+                        foreach (Parameter param in root.parameters)
+                        {
+                            Debug.Write(" " + param.Name + " " + param.Array + " " + param.Current_Value + " " + param.Default + " " + param.Description + " " + param.Description + "\n");
+                        }
 
-                    //}
-                    //Debug.Write("how many functions:" + count);
+                    }
+                    Debug.Write("how many functions:" + count);
                     //******************************************************************************************
                 }
                 catch (IOException)
@@ -235,8 +234,6 @@ namespace Image_Processing_Operation_Pool
 
         private void chooseImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            string mFileName = "";
             OpenFileDialog imageFile = new OpenFileDialog();
             if (imageFile.ShowDialog() == DialogResult.OK)
             {
@@ -264,7 +261,8 @@ namespace Image_Processing_Operation_Pool
         private void iTalk_Button_Create_Click(object sender, EventArgs e)
         {
             createScript();
-            backgroundWorker1.RunWorkerAsync(_selectedImagePath);
+            createJsonFile();
+           //backgroundWorker1.RunWorkerAsync(_selectedImagePath);
         }
 
         /// <summary>
@@ -275,7 +273,7 @@ namespace Image_Processing_Operation_Pool
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             string filePath = e.Argument.ToString();
-            //MessageBox.Show(filePath);
+            MessageBox.Show(filePath);
 
 
             // move all the belllow to a function : scriptCreator.generateScript(,_listroot);
@@ -381,10 +379,24 @@ namespace Image_Processing_Operation_Pool
 
             file.Close();
 
+            
         }
 
+        public void createJsonFile()
+        {
+            ListRoot listroot2 = new ListRoot();
+            listroot2.functions = new List<RootObject>();
+            foreach (RootObject r in lbScript.Items)
+            {
+                listroot2.functions.Add(r);
+            }
 
-
-
+            var output = JsonConvert.SerializeObject(listroot2.functions);
+            string fileNme = "cahce\\";
+            string scriptName = "JSON.txt";
+            StreamWriter file = new System.IO.StreamWriter(fileNme + scriptName);
+            file.WriteLine(output);
+            file.Close();
+        }
     }
 }
