@@ -31,15 +31,15 @@ namespace Image_Processing_Operation_Pool
         Parser parser = new Parser();
         ScriptCreator scriptCreator = new ScriptCreator();
         Hashtable _hashtable = new Hashtable();
-        Dictionary<System.Windows.Forms.Button, System.Windows.Forms.ComboBox> _EditComboBoxDict;
+        //Dictionary<System.Windows.Forms.Button, System.Windows.Forms.ComboBox> _EditComboBoxDict;
         string _selectedImagePath = "";
         string _imageName = "";
-        string _filePath = @"C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Image Processing Operation Pool\Image Processing Operation Pool\bin\Debug\cahce";
+       // string _filePath = @"C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Image Processing Operation Pool\Image Processing Operation Pool\bin\Debug\cahce";
 
         public Form1()
         {
             InitializeComponent();   
-            _EditComboBoxDict = new Dictionary<System.Windows.Forms.Button, System.Windows.Forms.ComboBox>();
+          //  _EditComboBoxDict = new Dictionary<System.Windows.Forms.Button, System.Windows.Forms.ComboBox>();
             iTalk_Buttton_AddTooltip();
             iTalk_Button_RemoveTooltip();
             iTalk_Button_CreateTooltip();
@@ -203,10 +203,10 @@ namespace Image_Processing_Operation_Pool
 
                     foreach (RootObject r in _listroot.functions)
                     {
-                        _funcNames.Add(r.functionName);// create list of names to fill next comboBoxes
+                        _funcNames.Add(r.functionName);// create list of names to fill the  function Box
                         foreach (var param in r.parameters)
                         {
-                            param.Current_Value = param.Default;
+                           // param.Current_Value = param.Default;
                         }
                         lbFuncToolBox.Items.Add(r);
                         //tcFuncTab.Controls.Add( r.createForm(r.functionName, _hashtable));                   

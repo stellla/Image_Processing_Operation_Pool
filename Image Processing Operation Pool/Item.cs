@@ -32,56 +32,56 @@ namespace Image_Processing_Operation_Pool
     //    public int rows { get; set; }
     //    public int columns { get; set; }
     //}
-    public class Parameter : ICloneable
-    {
-        public string Name { get; set; }
-        public Type type { get; set; }
-        public DoubleRange DoubleRange { get; set; }
-        public string Default { get; set; }
-        public string Description { get; set; }
-        public string Current_Value { get; set; }
-        public List<string> StringRange { get; set; }
-        public IntRange IntRange { get; set; }
-        public string Array { get; set; }
+    //public class Parameter : ICloneable
+    //{
+    //    public string Name { get; set; }
+    //    public Type type { get; set; }
+    //    public DoubleRange DoubleRange { get; set; }
+    //    public string Default { get; set; }
+    //    public string Description { get; set; }
+    //    public string Current_Value { get; set; }
+    //    public List<string> StringRange { get; set; }
+    //    public IntRange IntRange { get; set; }
+    //    public string Array { get; set; }
 
-        public object Clone()
-        {
-            Parameter clone = new Parameter();
+    //    public object Clone()
+    //    {
+    //        Parameter clone = new Parameter();
 
-            clone.Name          = Name;         
-            clone.type          = type;         
-            clone.DoubleRange   = DoubleRange;  
-            clone.Default       = Default;      
-            clone.Description   = Description;  
-            clone.Current_Value = Current_Value;
+    //        clone.Name          = Name;         
+    //        clone.type          = type;         
+    //        clone.DoubleRange   = DoubleRange;  
+    //        clone.Default       = Default;      
+    //        clone.Description   = Description;  
+    //        clone.Current_Value = Current_Value;
 
-            if (null != StringRange)
-            {
-                clone.StringRange = new List<string>();
-                foreach (var str in StringRange)
-                {
-                    clone.StringRange.Add(str);
-                }
-            }
-            else
-            {
-                clone.StringRange = null;
-            }
+    //        if (null != StringRange)
+    //        {
+    //            clone.StringRange = new List<string>();
+    //            foreach (var str in StringRange)
+    //            {
+    //                clone.StringRange.Add(str);
+    //            }
+    //        }
+    //        else
+    //        {
+    //            clone.StringRange = null;
+    //        }
            
-            clone.StringRange   = StringRange  ;
-            clone.IntRange      = IntRange     ;
-            clone.Array         = Array        ;
+    //        clone.StringRange   = StringRange  ;
+    //        clone.IntRange      = IntRange     ;
+    //        clone.Array         = Array        ;
                                 
-            return clone;
-        }
-    }
+    //        return clone;
+    //    }
+    //}
 
 
 
     public class RootObject : ICloneable
     {
 
-        
+
         public string functionName { get; set; }
         public string description { get; set; }
         public List<Parameter> parameters { get; set; }
@@ -164,38 +164,38 @@ namespace Image_Processing_Operation_Pool
         /// <returns></returns>
         public Control ModifyFormByType(Parameter param, Control funcTabPage, FlowLayoutPanel flws)
         {
-       
-                 switch (param.type)
-                 {
-                     case Type.Array:
-                         addArrayPropToForm(param, funcTabPage, flws);
-                         break;
-                     case Type.Bool:
-                         addBoolPropToForm(param, funcTabPage, flws);
-                         break;
-                     case Type.Double:
-                         addDoublePropToForm(param, funcTabPage, flws);
-                         break;
-                     case Type.Double_Range:
-                         addDouble_RangePropToForm(param, funcTabPage , flws);
-                         break;
-                     case Type.Int:
-                         addIntPropToForm(param, funcTabPage, flws);
-                         break;
-                     case Type.Int_Range:
-                         addInt_RangePropToForm(param, funcTabPage, flws);
-                         break;
-                     case Type.String:
-                         addStringPropToForm(param, funcTabPage , flws);
-                         break;
-                     case Type.String_Range:
-                         addString_RangePropToForm(param, funcTabPage, flws);
-                         break;
-                     default:
-                         break;
-                 }
-             
-             return funcTabPage;
+
+            switch (param.type)
+            {
+                case Type.Array:
+                    addArrayPropToForm(param, funcTabPage, flws);
+                    break;
+                case Type.Bool:
+                    addBoolPropToForm(param, funcTabPage, flws);
+                    break;
+                case Type.Double:
+                    addDoublePropToForm(param, funcTabPage, flws);
+                    break;
+                case Type.Double_Range:
+                    addDouble_RangePropToForm(param, funcTabPage, flws);
+                    break;
+                case Type.Int:
+                    addIntPropToForm(param, funcTabPage, flws);
+                    break;
+                case Type.Int_Range:
+                    addInt_RangePropToForm(param, funcTabPage, flws);
+                    break;
+                case Type.String:
+                    addStringPropToForm(param, funcTabPage, flws);
+                    break;
+                case Type.String_Range:
+                    addString_RangePropToForm(param, funcTabPage, flws);
+                    break;
+                default:
+                    break;
+            }
+
+            return funcTabPage;
         }
         /// <summary>
         /// adds boolean parameter represented by two RadioButtons "true" and "Flase" controlls
@@ -223,7 +223,7 @@ namespace Image_Processing_Operation_Pool
             // add controllers for boolean selection
             iTalk.iTalk_RadioButton TrueRadioButton = new iTalk.iTalk_RadioButton();
             TrueRadioButton.Text = "True";
-           
+
 
             iTalk.iTalk_RadioButton FalseRadioButton = new iTalk.iTalk_RadioButton();
             FalseRadioButton.Text = "Fasle";
@@ -233,7 +233,7 @@ namespace Image_Processing_Operation_Pool
 
             flws.Controls.Add(TrueRadioButton);
             flws.Controls.Add(FalseRadioButton);
-            
+
             //add events:
             TrueRadioButton.CheckedChanged += new iTalk.iTalk_RadioButton.CheckedChangedEventHandler((object o) =>
             {
@@ -244,7 +244,7 @@ namespace Image_Processing_Operation_Pool
 
             funcTabPage.Controls.Add(flws);
 
-           
+
         }
 
         //////////////////////////////////replace here the numericUpDown/////////////////
@@ -263,13 +263,13 @@ namespace Image_Processing_Operation_Pool
             flws.Controls.Add(paramName);
 
             //add controller:
-           // iTalk.iTalk_NumericUpDown intUpDown = new iTalk.iTalk_NumericUpDown();
+            // iTalk.iTalk_NumericUpDown intUpDown = new iTalk.iTalk_NumericUpDown();
             //flws.Controls.Add(intUpDown);
-           NumericUpDown intUpDown = new NumericUpDown();
+            NumericUpDown intUpDown = new NumericUpDown();
             flws.Controls.Add(intUpDown);
 
             //set defaullt:
-           // intUpDown.Value = int.Parse(param.Current_Value);
+            // intUpDown.Value = int.Parse(param.Current_Value);
 
 
             //add explanation:
@@ -331,7 +331,7 @@ namespace Image_Processing_Operation_Pool
 
             //add controller:
             //iTalk.iTalk_TrackBar iTalkTrackBar = new iTalk.iTalk_TrackBar();
-           // flws.Controls.Add(iTalkTrackBar);
+            // flws.Controls.Add(iTalkTrackBar);
             TrackBar trackBar = new TrackBar();
             flws.Controls.Add(trackBar);
 
@@ -340,7 +340,7 @@ namespace Image_Processing_Operation_Pool
             explanation.ToolTipIcon = ToolTipIcon.Info;
             explanation.IsBalloon = true;
             explanation.ShowAlways = true;
-            explanation.SetToolTip(trackBar, "Choose The value between" + param.IntRange.Max + " and " + param.IntRange.Min );
+            explanation.SetToolTip(trackBar, "Choose The value between" + param.IntRange.Max + " and " + param.IntRange.Min);
 
             //set min and max
             trackBar.Minimum = param.IntRange.Min;
@@ -372,7 +372,7 @@ namespace Image_Processing_Operation_Pool
         }
 
 
-       
+
 
         /// <summary>
         /// adss double parameter represented by TextBox controll to insert the value
@@ -400,9 +400,9 @@ namespace Image_Processing_Operation_Pool
             //add controller:
             iTalk.iTalk_TextBox_Small iTalkTextBox = new iTalk.iTalk_TextBox_Small();
             flws.Controls.Add(iTalkTextBox);
-           // TextBox textBox = new TextBox();
+            // TextBox textBox = new TextBox();
             iTalkTextBox.Text = param.Current_Value;
-          //  flws.Controls.Add(textBox);
+            //  flws.Controls.Add(textBox);
 
 
             //set current value:
@@ -422,7 +422,7 @@ namespace Image_Processing_Operation_Pool
 
 
             funcTabPage.Controls.Add(flws);
-           
+
 
         }
 
@@ -453,7 +453,7 @@ namespace Image_Processing_Operation_Pool
 
             //add controller:
             iTalk.iTalk_TextBox_Small DoubleTextBox = new iTalk.iTalk_TextBox_Small();
-         //   TrackBar trackBar = new TrackBar();
+            //   TrackBar trackBar = new TrackBar();
             flws.Controls.Add(DoubleTextBox);
 
 
@@ -467,8 +467,8 @@ namespace Image_Processing_Operation_Pool
 
 
             //set min and max
-         //   DoubleTextBox.Minimum = Convert.ToInt32(param.DoubleRange.Min);
-          //  DoubleTextBox.Maximum = Convert.ToInt32(param.DoubleRange.Max);
+            //   DoubleTextBox.Minimum = Convert.ToInt32(param.DoubleRange.Min);
+            //  DoubleTextBox.Maximum = Convert.ToInt32(param.DoubleRange.Max);
 
             //set current value:
             DoubleTextBox.Text = param.Current_Value;
@@ -481,7 +481,7 @@ namespace Image_Processing_Operation_Pool
             DoubleTextBox.TextChanged += new EventHandler((object sender, EventArgs e) =>
             {
                 param.Current_Value = DoubleTextBox.Text;
-               // MessageBox.Show(param.Current_Value);
+                // MessageBox.Show(param.Current_Value);
             });
 
             funcTabPage.Controls.Add(flws);
@@ -537,7 +537,7 @@ namespace Image_Processing_Operation_Pool
                 //MessageBox.Show(param.Current_Value);
             });
             funcTabPage.Controls.Add(flws);
-           
+
         }
 
         /// <summary>
@@ -587,9 +587,9 @@ namespace Image_Processing_Operation_Pool
             optionsComboBox.SelectedValueChanged += new System.EventHandler((object sender, EventArgs e) =>
             {
                 param.Current_Value = optionsComboBox.Text;
-               // MessageBox.Show(param.Current_Value);
+                // MessageBox.Show(param.Current_Value);
             });
-           
+
             funcTabPage.Controls.Add(flws);
 
         }
@@ -614,7 +614,7 @@ namespace Image_Processing_Operation_Pool
 
             // add controller
             iTalk.iTalk_TextBox_Small ArrayTextBox = new iTalk.iTalk_TextBox_Small();
-           // TextBox ArrayTextBox = new TextBox();
+            // TextBox ArrayTextBox = new TextBox();
             flws.Controls.Add(ArrayTextBox);
 
             //add explanation:
@@ -622,7 +622,7 @@ namespace Image_Processing_Operation_Pool
             explanation.ToolTipIcon = ToolTipIcon.Info;
             explanation.IsBalloon = true;
             explanation.ShowAlways = true;
-            explanation.SetToolTip(ArrayTextBox, "Enter the array values separated by a comma. For example Matrix 3x3 : " + "\n" + "1" + "," + "2" + "," +"3" + ";" + "4" + "," + "5" + "," + "6" + ";" + "7" + "," + "8" + "," + "9");
+            explanation.SetToolTip(ArrayTextBox, "Enter the array values separated by a comma. For example Matrix 3x3 : " + "\n" + "1" + "," + "2" + "," + "3" + ";" + "4" + "," + "5" + "," + "6" + ";" + "7" + "," + "8" + "," + "9");
 
 
             //add event:
