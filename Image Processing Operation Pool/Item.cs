@@ -113,7 +113,10 @@ namespace Image_Processing_Operation_Pool
             return MD5HashGenerator.GenerateKey(this);                      
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string calcMatlabScript()
         {
             string argList = "";
