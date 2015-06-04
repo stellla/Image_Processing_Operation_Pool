@@ -15,17 +15,17 @@ namespace Image_Processing_Operation_Pool
 {
 
 
-    public class DoubleRange
-    {
-        public double Min { get; set; }
-        public double Max { get; set; }
-    }
+    //public class DoubleRange
+    //{
+    //    public double Min { get; set; }
+    //    public double Max { get; set; }
+    //}
 
-    public class IntRange
-    {
-        public int Min { get; set; }
-        public int Max { get; set; }
-    }
+    //public class IntRange
+    //{
+    //    public int Min { get; set; }
+    //    public int Max { get; set; }
+    //}
 
     //public class Array
     //{
@@ -76,7 +76,27 @@ namespace Image_Processing_Operation_Pool
     //    }
     //}
 
+    public class ListRoot
+    {
+        public List<RootObject> functions { get; set; }
+    }
 
+    public enum Type
+    {
+        Bool,
+        Int,
+        Int_Range,
+        Double,
+        Double_Range,
+        String,
+        String_Range,
+        Array
+    };
+
+    // values is relevant only for "range" types, and is {min, max} for double_range and int_range, and {"v1", "v2", ...} 
+    // for string_range, and empty/ignored for all other types {}
+
+    // the default values set the initial values for the Parameters objects in the Function object
 
     public class RootObject : ICloneable
     {
@@ -646,27 +666,7 @@ namespace Image_Processing_Operation_Pool
         }
     }
 
-    public class ListRoot
-    {
-        public List<RootObject> functions { get; set; }
-    }
-
-    public enum Type
-    {
-        Bool,
-        Int,
-        Int_Range,
-        Double,
-        Double_Range,
-        String,
-        String_Range,
-        Array
-    };
-
-    // values is relevant only for "range" types, and is {min, max} for double_range and int_range, and {"v1", "v2", ...} 
-    // for string_range, and empty/ignored for all other types {}
-
-    // the default values set the initial values for the Parameters objects in the Function object
+  
 
 
 

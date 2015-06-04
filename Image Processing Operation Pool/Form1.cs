@@ -187,7 +187,7 @@ namespace Image_Processing_Operation_Pool
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
-
+                lbFuncToolBox.Items.Clear();
                 // initialize functions list of rootObjects from rootList class
                 _listroot.functions = new List<RootObject>();
                 string file = openFileDialog1.FileName;
@@ -398,5 +398,6 @@ namespace Image_Processing_Operation_Pool
             file.WriteLine(output);
             file.Close();
         }
+
     }
 }
