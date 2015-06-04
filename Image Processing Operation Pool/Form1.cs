@@ -34,6 +34,10 @@ namespace Image_Processing_Operation_Pool
         //Dictionary<System.Windows.Forms.Button, System.Windows.Forms.ComboBox> _EditComboBoxDict;
         string _selectedImagePath = "";
         string _imageName = "";
+        public const string SCRIPT_PATH = "cache\\";
+        
+
+        
        // string _filePath = @"C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Image Processing Operation Pool\Image Processing Operation Pool\bin\Debug\cahce";
 
         public Form1()
@@ -43,6 +47,8 @@ namespace Image_Processing_Operation_Pool
             iTalk_Buttton_AddTooltip();
             iTalk_Button_RemoveTooltip();
             iTalk_Button_CreateTooltip();
+
+            Directory.CreateDirectory(SCRIPT_PATH);
         }
 
         /// <summary>
@@ -187,6 +193,7 @@ namespace Image_Processing_Operation_Pool
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
+
                 lbFuncToolBox.Items.Clear();
                 // initialize functions list of rootObjects from rootList class
                 _listroot.functions = new List<RootObject>();
@@ -232,6 +239,8 @@ namespace Image_Processing_Operation_Pool
             }
         }
 
+      
+
         private void chooseImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog imageFile = new OpenFileDialog();
@@ -260,9 +269,9 @@ namespace Image_Processing_Operation_Pool
         /// <param name="e"></param>
         private void iTalk_Button_Create_Click(object sender, EventArgs e)
         {
-            createScript();
-            createJsonFile();
-           //backgroundWorker1.RunWorkerAsync(_selectedImagePath);
+            string scriptName = createScript();
+            createJsonFile(scriptName);
+            //backgroundWorker1.RunWorkerAsync(_selectedImagePath);
         }
 
         /// <summary>
@@ -292,7 +301,7 @@ namespace Image_Processing_Operation_Pool
             {
                 size = file.Length;
 
-                using (HashAlgorithm hasher = MD5.Create())
+                /*using (HashAlgorithm hasher = MD5.Create())
                 {
                     do
                     {
@@ -303,6 +312,7 @@ namespace Image_Processing_Operation_Pool
                         totalBytesRead += bytesRead;
 
                         hasher.TransformBlock(buffer, 0, bytesRead, null, 0);
+                        
 
                         //update the progress bar
                         backgroundWorker1.ReportProgress((int)((double)totalBytesRead / size * 100));
@@ -313,6 +323,8 @@ namespace Image_Processing_Operation_Pool
                     hasher.TransformFinalBlock(buffer, 0, 0);
                     e.Result = makeHashString(hasher.Hash);
                 }
+                 * 
+                 * */
             }
         }
 
@@ -357,32 +369,44 @@ namespace Image_Processing_Operation_Pool
             progressBar1.Value = 0;
         }
 
-        public void createScript()
+        public string createScript()
         {
             //FileStream fs = File.Create(@"C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Image Processing Operation Pool\Image Processing Operation Pool\bin\Debug\cahce\script7.m");
-
-            string fileNme = "cahce\\";
-            string scriptName = "script.m";
-            StreamWriter file = new System.IO.StreamWriter(fileNme + scriptName);
-            file.WriteLine("my script:");
+                 
+            string hashName = "script";
+            string scriptData = "im = imread('" + _selectedImagePath + "');\n";
+           
             foreach (RootObject r in lbScript.Items)
             {
-                file.WriteLine("function " + r.functionName + ":");
+                string hash = r.HashCode();
+                hashName += "_" + r.HashCode();               
+                scriptData += r.calcMatlabScript() + "\n";
+
+               /* StreamWriter file = new System.IO.StreamWriter(SCRIPT_PATH + hash + ".json");
+                file.Write(JsonConvert.SerializeObject(r));
+                file.Close();
+                */
+                /*
                 foreach (var param in r.parameters)
                 {
                     file.Write(param.type.ToString() + ": " + param.Current_Value + ", ");
 
                 }
                 file.WriteLine("");
+                 * */
 
             }
 
-            file.Close();
+            scriptData += "imwrite('" +SCRIPT_PATH + "outimage" + hashName + "', im, 'bmp');";
 
-            
+            StreamWriter scriptFile = new System.IO.StreamWriter(SCRIPT_PATH + "script" + hashName);
+            scriptFile.Write(scriptData);
+            scriptFile.Close();
+
+            return hashName;
         }
 
-        public void createJsonFile()
+        public void createJsonFile(string scriptHashName)
         {
             ListRoot listroot2 = new ListRoot();
             listroot2.functions = new List<RootObject>();
@@ -393,10 +417,44 @@ namespace Image_Processing_Operation_Pool
 
             var output = JsonConvert.SerializeObject(listroot2.functions);
             string fileNme = "cahce\\";
-            string scriptName = "JSON.txt";
+            string scriptName = scriptHashName + ".script";
             StreamWriter file = new System.IO.StreamWriter(fileNme + scriptName);
             file.WriteLine(output);
             file.Close();
+        }
+
+        private void loadJsonFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+            if (result == DialogResult.OK) // Test result.
+            {
+
+                lbFuncToolBox.Items.Clear();
+                // initialize functions list of rootObjects from rootList class
+                _listroot.functions = new List<RootObject>();
+                string file = openFileDialog1.FileName;
+                try
+                {
+                    int count = 0;
+                    string json = File.ReadAllText(openFileDialog1.InitialDirectory + openFileDialog1.FileName);
+
+                    // parse json file and return list of functions as objects
+                    var scriptsJson = parser.parseText(json);
+                   
+                    lbScript.DisplayMember = "functionName";
+
+                    foreach (RootObject r in scriptsJson)
+                    {
+                       
+                        lbScript.Items.Add(r);
+                        //tcFuncTab.Controls.Add( r.createForm(r.functionName, _hashtable));                   
+                    }           
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("Could not open file");
+                }
+            }
         }
 
     }

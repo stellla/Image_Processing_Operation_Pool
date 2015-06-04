@@ -125,6 +125,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Item.cs" />
+    <Compile Include="MD5HashGenerator.cs" />
     <Compile Include="Parameter.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />

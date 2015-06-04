@@ -14,6 +14,7 @@ using System.Drawing;
 
 namespace Image_Processing_Operation_Pool
 {
+    [Serializable]
     public class Parameter : ICloneable
     {
         public string Name { get; set; }

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Collections;
 using System.Diagnostics;
 using System.Drawing;
+using System.Security.Cryptography;
 
 namespace Image_Processing_Operation_Pool
 {
@@ -97,7 +98,7 @@ namespace Image_Processing_Operation_Pool
     // for string_range, and empty/ignored for all other types {}
 
     // the default values set the initial values for the Parameters objects in the Function object
-
+    [Serializable]
     public class RootObject : ICloneable
     {
 
@@ -105,6 +106,36 @@ namespace Image_Processing_Operation_Pool
         public string functionName { get; set; }
         public string description { get; set; }
         public List<Parameter> parameters { get; set; }
+
+
+        public string HashCode()
+        {
+            return MD5HashGenerator.GenerateKey(this);                      
+        }
+
+
+        public string calcMatlabScript()
+        {
+            string argList = "";
+
+            foreach (Parameter param in parameters)
+            {   
+                if (Type.Array == param.type)
+                {
+                    argList += "[" + param.Current_Value + "]" + ", ";
+                }
+                else if (Type.String == param.type || Type.String_Range == param.type)
+                {
+                    argList += "'" + param.Current_Value + "'" + ", "; 
+                }
+                else
+                {
+                    argList += param.Current_Value + ", ";
+                }
+            }
+
+            return  "im = " + functionName + "(" +  argList + ");";
+        }
 
 
         /// <summary>
@@ -300,7 +331,16 @@ namespace Image_Processing_Operation_Pool
             explanation.SetToolTip(intUpDown, "Choose The int value for the parameter , the default value is " + param.Default);
 
             //set current value:
-            intUpDown.Value = int.Parse(param.Current_Value);
+            int val;
+            if (!int.TryParse(param.Current_Value, out val))
+            {
+                intUpDown.Value = val;                
+            }
+            else
+            {
+                intUpDown.Value = int.Parse(param.Default);
+            }
+            
 
             //add description:
             ToolTip description = new ToolTip();
