@@ -108,6 +108,10 @@ namespace Image_Processing_Operation_Pool
         public List<Parameter> parameters { get; set; }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string HashCode()
         {
             return MD5HashGenerator.GenerateKey(this);                      
