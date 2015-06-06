@@ -35,6 +35,11 @@ namespace Image_Processing_Operation_Pool
         public List<RootObject> parseText(string json)
         {
            // create list of var objects according to the json file
+
+            //string extention = Path.GetExtension(json);
+            //if (!extention.Equals(".json"))
+            //    MessageBox.Show("not JSON file");
+
             var h = JsonConvert.DeserializeObject<List<RootObject>>(json);
        
             //initialize rootList class

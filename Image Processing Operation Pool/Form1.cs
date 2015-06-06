@@ -193,14 +193,12 @@ namespace Image_Processing_Operation_Pool
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
-
                 lbFuncToolBox.Items.Clear();
                 // initialize functions list of rootObjects from rootList class
                 _listroot.functions = new List<RootObject>();
                 string file = openFileDialog1.FileName;
                 try
                 {
-                    int count = 0;
                     string json = File.ReadAllText(openFileDialog1.InitialDirectory + openFileDialog1.FileName);
 
                     // parse json file and return list of functions as objects
@@ -219,17 +217,17 @@ namespace Image_Processing_Operation_Pool
                         //tcFuncTab.Controls.Add( r.createForm(r.functionName, _hashtable));                   
                     }
                     //*******************TEST*******************************************************************
-                    foreach (RootObject root in _listroot.functions)
-                    {
-                        //count.count++;
-                        Debug.Write(" " + root.functionName + " " + root.description);
-                        foreach (Parameter param in root.parameters)
-                        {
-                            Debug.Write(" " + param.Name + " " + param.Array + " " + param.Current_Value + " " + param.Default + " " + param.Description + " " + param.Description + "\n");
-                        }
+                    //foreach (RootObject root in _listroot.functions)
+                    //{
+                    //    //count.count++;
+                    //    Debug.Write(" " + root.functionName + " " + root.description);
+                    //    foreach (Parameter param in root.parameters)
+                    //    {
+                    //        Debug.Write(" " + param.Name + " " + param.Array + " " + param.Current_Value + " " + param.Default + " " + param.Description + " " + param.Description + "\n");
+                    //    }
 
-                    }
-                    Debug.Write("how many functions:" + count);
+                    //}
+                    //Debug.Write("how many functions:" + count);
                     //******************************************************************************************
                 }
                 catch (IOException)
@@ -249,9 +247,6 @@ namespace Image_Processing_Operation_Pool
                 try
                 {
                     _selectedImagePath = imageFile.FileName;
-                     //MessageBox.Show(_selectedImagePath);
-                     //string imageName = parser.removeFilePathExtentions(_selectedImagePath);
-                     //mFileName = parser.addMatlabExtantion(imageName);
                 }
                 catch (IOException)
                 {
@@ -282,50 +277,7 @@ namespace Image_Processing_Operation_Pool
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             string filePath = e.Argument.ToString();
-            MessageBox.Show(filePath);
-
-
-            // move all the belllow to a function : scriptCreator.generateScript(,_listroot);
-
-            // read parts of the file to here
-            byte[] buffer;
-            //will be updated with the amount of bytes we read every time through the loop that 
-            //will go over the file the file
-            int bytesRead;
-            // holds the size of the file to hash
-            long size;
-            //holds the count of the total amount of bytes that were read so far
-            long totalBytesRead = 0;
-
-            using (Stream file = File.OpenRead(filePath))
-            {
-                size = file.Length;
-
-                /*using (HashAlgorithm hasher = MD5.Create())
-                {
-                    do
-                    {
-                        buffer = new byte[4096];
-
-                        bytesRead = file.Read(buffer, 0, buffer.Length);//returns an integer of how many bytes are read 
-
-                        totalBytesRead += bytesRead;
-
-                        hasher.TransformBlock(buffer, 0, bytesRead, null, 0);
-                        
-
-                        //update the progress bar
-                        backgroundWorker1.ReportProgress((int)((double)totalBytesRead / size * 100));
-
-                    }
-                    while (0!= bytesRead);
-
-                    hasher.TransformFinalBlock(buffer, 0, 0);
-                    e.Result = makeHashString(hasher.Hash);
-                }
-                 * 
-                 * */
-            }
+            MessageBox.Show(filePath); 
         }
 
         /// <summary> 
@@ -333,18 +285,18 @@ namespace Image_Processing_Operation_Pool
         /// </summary>
         /// <param name="hashBytes"></param>
         /// <returns></returns>
-        private static string makeHashString(byte[] hashBytes)
-        {
-            //32 is the initail capacity 
-            //md5 hash is 32 charecters long
-            StringBuilder hash = new StringBuilder(32);
-            foreach (byte b in hashBytes)
-            {
-                hash.Append(b.ToString("x2").ToLower());
-            }
+        //private static string makeHashString(byte[] hashBytes)
+        //{
+        //    //32 is the initail capacity 
+        //    //md5 hash is 32 charecters long
+        //    StringBuilder hash = new StringBuilder(32);
+        //    foreach (byte b in hashBytes)
+        //    {
+        //        hash.Append(b.ToString("x2").ToLower());
+        //    }
 
-            return hash.ToString();
-        }
+        //    return hash.ToString();
+        //}
 
         /// <summary>
         /// 
@@ -364,44 +316,31 @@ namespace Image_Processing_Operation_Pool
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             _imageName = e.Result.ToString();
-            MessageBox.Show("image name is: " +_imageName);
-            MessageBox.Show(e.Result.ToString());
             progressBar1.Value = 0;
         }
 
         public string createScript()
         {
-            //FileStream fs = File.Create(@"C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Image Processing Operation Pool\Image Processing Operation Pool\bin\Debug\cahce\script7.m");
-                 
             string hashName = "script";
             string scriptData = "im = imread('" + _selectedImagePath + "');\n";
-           
+
+            //StreamWriter scriptFile ;
+
             foreach (RootObject r in lbScript.Items)
             {
                 string hash = r.HashCode();
                 hashName += "_" + r.HashCode();               
                 scriptData += r.calcMatlabScript() + "\n";
 
-               /* StreamWriter file = new System.IO.StreamWriter(SCRIPT_PATH + hash + ".json");
-                file.Write(JsonConvert.SerializeObject(r));
-                file.Close();
-                */
-                /*
-                foreach (var param in r.parameters)
-                {
-                    file.Write(param.type.ToString() + ": " + param.Current_Value + ", ");
-
-                }
-                file.WriteLine("");
-                 * */
-
-            }
-
-            scriptData += "imwrite('" +SCRIPT_PATH + "outimage" + hashName + "', im, 'bmp');";
-
-            StreamWriter scriptFile = new System.IO.StreamWriter(SCRIPT_PATH + "script" + hashName);
-            scriptFile.Write(scriptData);
-            scriptFile.Close();
+                StreamWriter scriptFile = new System.IO.StreamWriter(SCRIPT_PATH + "script" + hashName);
+                scriptFile.Write(scriptData);
+                scriptData += "imwrite('" + SCRIPT_PATH + "outimage" + hashName + "', im, 'bmp');";
+                scriptFile.Close();
+               
+            }          
+            //StreamWriter scriptFile = new System.IO.StreamWriter(SCRIPT_PATH + "script" + hashName);
+           // scriptFile.Write(scriptData);
+           // scriptFile.Close();
 
             return hashName;
         }
@@ -423,19 +362,21 @@ namespace Image_Processing_Operation_Pool
             file.Close();
         }
 
-        private void loadJsonFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ReloadJsonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
             {
 
                 lbFuncToolBox.Items.Clear();
+                lbScript.Items.Clear();
+
+                
                 // initialize functions list of rootObjects from rootList class
                 _listroot.functions = new List<RootObject>();
                 string file = openFileDialog1.FileName;
                 try
-                {
-                    int count = 0;
+                {                  
                     string json = File.ReadAllText(openFileDialog1.InitialDirectory + openFileDialog1.FileName);
 
                     // parse json file and return list of functions as objects
@@ -444,8 +385,7 @@ namespace Image_Processing_Operation_Pool
                     lbScript.DisplayMember = "functionName";
 
                     foreach (RootObject r in scriptsJson)
-                    {
-                       
+                    {                
                         lbScript.Items.Add(r);
                         //tcFuncTab.Controls.Add( r.createForm(r.functionName, _hashtable));                   
                     }           

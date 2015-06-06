@@ -51,10 +51,10 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.chooseImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadJsonFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.loadJsonFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.iTalk_MenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -270,6 +270,14 @@
             this.chooseImageToolStripMenuItem.Text = "Choose Image";
             this.chooseImageToolStripMenuItem.Click += new System.EventHandler(this.chooseImageToolStripMenuItem_Click);
             // 
+            // loadJsonFileToolStripMenuItem
+            // 
+            this.loadJsonFileToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.loadJsonFileToolStripMenuItem.Name = "loadJsonFileToolStripMenuItem";
+            this.loadJsonFileToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
+            this.loadJsonFileToolStripMenuItem.Text = "Reload Json";
+            this.loadJsonFileToolStripMenuItem.Click += new System.EventHandler(this.ReloadJsonToolStripMenuItem_Click);
+            // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
@@ -283,14 +291,6 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(100, 23);
             this.progressBar1.TabIndex = 28;
-            // 
-            // loadJsonFileToolStripMenuItem
-            // 
-            this.loadJsonFileToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.loadJsonFileToolStripMenuItem.Name = "loadJsonFileToolStripMenuItem";
-            this.loadJsonFileToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
-            this.loadJsonFileToolStripMenuItem.Text = "Load Json File";
-            this.loadJsonFileToolStripMenuItem.Click += new System.EventHandler(this.loadJsonFileToolStripMenuItem_Click);
             // 
             // Form1
             // 
