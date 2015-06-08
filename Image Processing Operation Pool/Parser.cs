@@ -53,29 +53,29 @@ namespace Image_Processing_Operation_Pool
                listroot.functions.Add(f);
               // createHashTable(listroot.functions);
 
-               foreach (RootObject root in listroot.functions)
-               {
+               //foreach (RootObject root in listroot.functions)
+               //{
                    
-                   Debug.Write(" " + root.functionName + " " + root.description);
-                   foreach (Parameter param in root.parameters)
-                   {
+               //    Debug.Write(" " + root.functionName + " " + root.description);
+               //    foreach (Parameter param in root.parameters)
+               //    {
 
 
-                       if (param.type.Equals(Type.String_Range))
-                       {
-                           string options = "";
-                           options = returnStringOptions(param);
-                           Debug.Write(" " + param.Name + " " + options + " " + param.type + " " + param.Default + " " + param.Description + " " + param.Current_Value + "\n");
-                       }
+               //        if (param.type.Equals(Type.String_Range))
+               //        {
+               //            string options = "";
+               //            options = returnStringOptions(param);
+               //            Debug.Write(" " + param.Name + " " + options + " " + param.type + " " + param.Default + " " + param.Description + " " + param.Current_Value + "\n");
+               //        }
 
-                       if(param.type.Equals(Type.Double_Range))
-                           Debug.Write(" " + param.Name + " " + "min: " + param.DoubleRange.Min + " max: " +  param.DoubleRange.Max  + " " + param.type + " " + param.Default + " " + param.Description + " " + param.Current_Value + "\n");
+               //        if(param.type.Equals(Type.Double_Range))
+               //            Debug.Write(" " + param.Name + " " + "min: " + param.DoubleRange.Min + " max: " +  param.DoubleRange.Max  + " " + param.type + " " + param.Default + " " + param.Description + " " + param.Current_Value + "\n");
 
-                       if (param.type.Equals(Type.Int_Range))
-                           Debug.Write(" " + param.Name + " " + "min: " + param.IntRange.Max + " max: " +param.IntRange.Min +  " " + param.type + " " + param.Default + " " + param.Description + " " + param.Current_Value + "\n");
-                   }
+               //        if (param.type.Equals(Type.Int_Range))
+               //            Debug.Write(" " + param.Name + " " + "min: " + param.IntRange.Max + " max: " +param.IntRange.Min +  " " + param.type + " " + param.Default + " " + param.Description + " " + param.Current_Value + "\n");
+               //    }
 
-               }
+               //}
               
            }
          

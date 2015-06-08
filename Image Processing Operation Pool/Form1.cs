@@ -31,15 +31,12 @@ namespace Image_Processing_Operation_Pool
         Parser parser = new Parser();
         ScriptCreator scriptCreator = new ScriptCreator();
         Hashtable _hashtable = new Hashtable();
-        //Dictionary<System.Windows.Forms.Button, System.Windows.Forms.ComboBox> _EditComboBoxDict;
         string _selectedImagePath = "";
-        string _imageName = "";
+        string _imageHash = "";
         public const string SCRIPT_PATH = "cache\\";
         
 
         
-       // string _filePath = @"C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Image Processing Operation Pool\Image Processing Operation Pool\bin\Debug\cahce";
-
         public Form1()
         {
             InitializeComponent();   
@@ -188,7 +185,7 @@ namespace Image_Processing_Operation_Pool
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void chooseJsonToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadJsonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.
@@ -236,9 +233,6 @@ namespace Image_Processing_Operation_Pool
                 }
             }
         }
-
-      
-
         private void chooseImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog imageFile = new OpenFileDialog();
@@ -247,15 +241,17 @@ namespace Image_Processing_Operation_Pool
                 try
                 {
                     _selectedImagePath = imageFile.FileName;
+                    //MessageBox.Show(_selectedImagePath);
+
                 }
                 catch (IOException)
                 {
-                    MessageBox.Show("Could not open file");
+                    MessageBox.Show("Could not load image");
                 }
             }
 
         }
-        
+
 
         /// <summary>
         /// 
@@ -264,86 +260,199 @@ namespace Image_Processing_Operation_Pool
         /// <param name="e"></param>
         private void iTalk_Button_Create_Click(object sender, EventArgs e)
         {
+            createImageHash();
             string scriptName = createScript();
             createJsonFile(scriptName);
-            //backgroundWorker1.RunWorkerAsync(_selectedImagePath);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+
+
+
+        public void createImageHash()
         {
-            string filePath = e.Argument.ToString();
-            MessageBox.Show(filePath); 
+
+            string filePath = _selectedImagePath;
+            string result = "";
+
+            // read parts of the file to here
+            byte[] buffer;
+            //will be updated with the amount of bytes we read every time through the loop that 
+            //will go over the file the file
+            int bytesRead;
+            // holds the size of the file to hash
+            long size;
+            //holds the count of the total amount of bytes that were read so far
+            long totalBytesRead = 0;
+
+            using (Stream file = File.OpenRead(filePath))
+            {
+                size = file.Length;
+
+                using (HashAlgorithm hasher = MD5.Create())
+                {
+                    do
+                    {
+                        buffer = new byte[4096];
+
+                        bytesRead = file.Read(buffer, 0, buffer.Length);//returns an integer of how many bytes are read 
+
+                        totalBytesRead += bytesRead;
+
+                        hasher.TransformBlock(buffer, 0, bytesRead, null, 0);
+
+                        //update the progress bar
+                        // backgroundWorker1.ReportProgress((int)((double)totalBytesRead / size * 100));
+
+                    }
+                    while (0 != bytesRead);
+
+                    hasher.TransformFinalBlock(buffer, 0, 0);
+                    result = makeHashString(hasher.Hash);
+                    _imageHash = result;
+                }
+            }
         }
+
 
         /// <summary> 
         /// convert hash bytes array to string  
         /// </summary>
         /// <param name="hashBytes"></param>
         /// <returns></returns>
-        //private static string makeHashString(byte[] hashBytes)
-        //{
-        //    //32 is the initail capacity 
-        //    //md5 hash is 32 charecters long
-        //    StringBuilder hash = new StringBuilder(32);
-        //    foreach (byte b in hashBytes)
-        //    {
-        //        hash.Append(b.ToString("x2").ToLower());
-        //    }
-
-        //    return hash.ToString();
-        //}
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private static string makeHashString(byte[] hashBytes)
         {
-            progressBar1.Value = e.ProgressPercentage;
+            //32 is the initail capacity 
+            //md5 hash is 32 charecters long
+            StringBuilder hash = new StringBuilder(32);
+            foreach (byte b in hashBytes)
+            {
+                hash.Append(b.ToString("x2").ToLower());
+            }
+
+            return hash.ToString();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            _imageName = e.Result.ToString();
-            progressBar1.Value = 0;
-        }
 
         public string createScript()
         {
-            string hashName = "script";
-            string scriptData = "im = imread('" + _selectedImagePath + "');\n";
+           
 
-            //StreamWriter scriptFile ;
-
-            foreach (RootObject r in lbScript.Items)
+            //step 1: calculate all hashes for each function in the script with the image created hash
+            // use _imageHash
+            List<string> hashes = new List<string>();
+            string stringObject = "";
+            string listOfObjecs = "";
+            for (int i = 0; i < lbScript.Items.Count; i++)
             {
-                string hash = r.HashCode();
-                hashName += "_" + r.HashCode();               
-                scriptData += r.calcMatlabScript() + "\n";
+                RootObject rootObject = (RootObject)lbScript.Items[i];
+                stringObject = rootObject.calcMatlabScript();
+                listOfObjecs += " " + stringObject;
+                string ObjectHash = CalculateMD5HashFromString(listOfObjecs);
+                string Hash = _imageHash + "_" + ObjectHash;
+                hashes.Add(Hash);
+                //Debug.Write(listOfObjecs +  "\n");
+                //Debug.Write("\n");
+                Debug.Write(Hash + "\n");
+            }
 
-                StreamWriter scriptFile = new System.IO.StreamWriter(SCRIPT_PATH + "script" + hashName);
-                scriptFile.Write(scriptData);
-                scriptData += "imwrite('" + SCRIPT_PATH + "outimage" + hashName + "', im, 'bmp');";
-                scriptFile.Close();
-               
-            }          
+            //step 2: search for the computed hashes in the cash from end to begining
+        
+            // Put all file names in  directory into array.
+            string[] ImagesArray = Directory.GetFiles(@"C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Processing Operation Pool\bin\Debug\cahce");
+            string[] ImgesNames = new string[ImagesArray.Length];
+
+            // Display allfiles.
+            //Console.WriteLine("--- Files : ---");
+
+            
+            for (int i = 0; i < ImagesArray.Length; i++)
+            {
+                string imageName = Path.GetFileName(ImagesArray[i]);
+                ImgesNames[i] = imageName;
+                //Debug.Write(ImgesNames[i] + "number " + i +" \n");
+            }
+            List<string> ImgesNamesList = ImgesNames.ToList();
+
+
+            // step 3: create the script
+
+                //3.1 load the latest image stage from the cache (or the selected image)
+                 string script = "";
+
+
+                script += "im = imread('" + _selectedImagePath + "');\n";
+
+
+                //3.2 run all functions from that stage and so on and save Intermediate results
+
+
+                 //3.3 save the final image result for the user: COPY the image to 
+                 //the chosen location of the user but save the image in the cache
+
+
+
+
+
+            string hashName = "";
+            //string RootHash = "";
+            //string hashName = "script";
+            //string scriptData = "im = imread('" + _selectedImagePath + "');\n";
+
+            //foreach (RootObject r in lbScript.Items)
+            //{
+            //    string hash = r.HashCode();
+            //    hashName += "_" + r.HashCode();
+            //    scriptData += r.calcMatlabScript() + "\n";
+            //}
+
+            //scriptData += "imwrite('" + SCRIPT_PATH + "outimage" + hashName + "', im, 'bmp');";
             //StreamWriter scriptFile = new System.IO.StreamWriter(SCRIPT_PATH + "script" + hashName);
-           // scriptFile.Write(scriptData);
-           // scriptFile.Close();
+            //scriptFile.Write(scriptData);
+            //scriptFile.Close();
 
             return hashName;
         }
+
+
+
+
+        public string CalculateMD5HashFromString(string input)
+        {
+            // step 1, calculate MD5 hash from input
+            MD5 md5 = System.Security.Cryptography.MD5.Create();
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+            byte[] hash = md5.ComputeHash(inputBytes);
+
+            // step 2, convert byte array to hex string
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("X2"));
+            }
+            return sb.ToString();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public void createJsonFile(string scriptHashName)
         {
@@ -362,7 +471,7 @@ namespace Image_Processing_Operation_Pool
             file.Close();
         }
 
-        private void ReloadJsonToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadScriptToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             if (result == DialogResult.OK) // Test result.

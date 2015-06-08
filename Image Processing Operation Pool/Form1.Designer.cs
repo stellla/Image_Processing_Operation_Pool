@@ -226,9 +226,9 @@
             // 
             this.chooseJsonToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.chooseJsonToolStripMenuItem.Name = "chooseJsonToolStripMenuItem";
-            this.chooseJsonToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
-            this.chooseJsonToolStripMenuItem.Text = "&Choose Json";
-            this.chooseJsonToolStripMenuItem.Click += new System.EventHandler(this.chooseJsonToolStripMenuItem_Click);
+            this.chooseJsonToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.chooseJsonToolStripMenuItem.Text = "Load Json";
+            this.chooseJsonToolStripMenuItem.Click += new System.EventHandler(this.LoadJsonToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -274,16 +274,16 @@
             // 
             this.loadJsonFileToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.loadJsonFileToolStripMenuItem.Name = "loadJsonFileToolStripMenuItem";
-            this.loadJsonFileToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
-            this.loadJsonFileToolStripMenuItem.Text = "Reload Json";
-            this.loadJsonFileToolStripMenuItem.Click += new System.EventHandler(this.ReloadJsonToolStripMenuItem_Click);
+            this.loadJsonFileToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
+            this.loadJsonFileToolStripMenuItem.Text = "Load Script";
+            this.loadJsonFileToolStripMenuItem.Click += new System.EventHandler(this.LoadScriptToolStripMenuItem_Click);
             // 
             // backgroundWorker1
             // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+           // this.backgroundWorker1.WorkerReportsProgress = true;
+           // this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+           // this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+           // this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
             // progressBar1
             // 
