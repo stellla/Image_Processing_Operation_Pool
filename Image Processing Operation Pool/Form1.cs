@@ -241,6 +241,22 @@ namespace Image_Processing_Operation_Pool
                 try
                 {
                     _selectedImagePath = imageFile.FileName;
+
+                    if (File.Exists(_selectedImagePath + ".script"))
+                    {
+                        string json = File.ReadAllText(_selectedImagePath + ".script");
+
+                        // parse json file and return list of functions as objects
+                        var scriptsJson = parser.parseText(json);
+
+                        lbScript.DisplayMember = "functionName";
+                        lbScript.Items.Clear();
+                        foreach (RootObject r in scriptsJson)
+                        {
+                            lbScript.Items.Add(r);
+                            //tcFuncTab.Controls.Add( r.createForm(r.functionName, _hashtable));                   
+                        }
+                    }
                     //MessageBox.Show(_selectedImagePath);
 
                 }
@@ -262,7 +278,7 @@ namespace Image_Processing_Operation_Pool
         {
             createImageHash();
             string scriptName = createScript();
-            createJsonFile(scriptName);
+            //createJsonFile(scriptName);
         }
 
 
@@ -342,73 +358,134 @@ namespace Image_Processing_Operation_Pool
             List<string> hashes = new List<string>();
             string stringObject = "";
             string listOfObjecs = "";
+
+
+            
+            //string scriptToDo = "";
             for (int i = 0; i < lbScript.Items.Count; i++)
             {
                 RootObject rootObject = (RootObject)lbScript.Items[i];
-                stringObject = rootObject.calcMatlabScript();
+                stringObject = rootObject.GenerateObjectHashCode();
                 listOfObjecs += " " + stringObject;
                 string ObjectHash = CalculateMD5HashFromString(listOfObjecs);
-                string Hash = _imageHash + "_" + ObjectHash;
+                string Hash = _imageHash + "_" + ObjectHash + ".bmp";
                 hashes.Add(Hash);
-                //Debug.Write(listOfObjecs +  "\n");
-                //Debug.Write("\n");
+                Debug.Write(listOfObjecs + "\n");
+                Debug.Write("\n");
                 Debug.Write(Hash + "\n");
             }
 
-            //step 2: search for the computed hashes in the cash from end to begining
-        
-            // Put all file names in  directory into array.
-            string[] ImagesArray = Directory.GetFiles(@"C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Processing Operation Pool\bin\Debug\cahce");
-            string[] ImgesNames = new string[ImagesArray.Length];
-
-            // Display allfiles.
-            //Console.WriteLine("--- Files : ---");
-
-            
-            for (int i = 0; i < ImagesArray.Length; i++)
+            string startIm = _selectedImagePath;
+            int hashIndex = 0;
+            while (hashIndex < hashes.Count)            
             {
-                string imageName = Path.GetFileName(ImagesArray[i]);
-                ImgesNames[i] = imageName;
-                //Debug.Write(ImgesNames[i] + "number " + i +" \n");
+                if (File.Exists(hashes[hashIndex]))
+                {
+                    startIm = hashes[hashIndex];
+                }
+                else
+                {
+                    break;
+                }
+
+                hashIndex++;
             }
-            List<string> ImgesNamesList = ImgesNames.ToList();
-
-
-            // step 3: create the script
-
-                //3.1 load the latest image stage from the cache (or the selected image)
-                 string script = "";
-
-
-                script += "im = imread('" + _selectedImagePath + "');\n";
-
-
-                //3.2 run all functions from that stage and so on and save Intermediate results
-
-
-                 //3.3 save the final image result for the user: COPY the image to 
-                 //the chosen location of the user but save the image in the cache
-
-
-
+           
 
 
             string hashName = "";
-            //string RootHash = "";
-            //string hashName = "script";
-            //string scriptData = "im = imread('" + _selectedImagePath + "');\n";
+            string RootHash = "";
+            string scriptData = "im = imread('" + startIm + "');\n";
 
-            //foreach (RootObject r in lbScript.Items)
+            for (int i = hashIndex; i < lbScript.Items.Count; i++ )
+            {
+                //string hash = lbScript.Items[i].HashCode();
+                //hashName += "_" + r.HashCode();
+                scriptData += ((RootObject) lbScript.Items[i]).calcMatlabScript( "cache\\" +  hashes[i]) + "\n";
+
+                ListRoot listroot2 = new ListRoot();
+                listroot2.functions = new List<RootObject>();
+                for (int j = 0; j <= i; j++)
+                {
+                    listroot2.functions.Add((RootObject)lbScript.Items[j]);
+                }
+
+                var output = JsonConvert.SerializeObject(listroot2.functions);
+                string fileNme = "cache\\";
+                string scriptName = hashes[i] + ".script";
+                StreamWriter file = new System.IO.StreamWriter(fileNme + scriptName);
+                file.WriteLine(output);
+                file.Close();
+
+
+            }
+
+            //scriptData += 
+            StreamWriter scriptFile = new System.IO.StreamWriter(SCRIPT_PATH + "script" + hashName);
+            scriptFile.Write(scriptData);
+            scriptFile.Close();
+
+
+
+
+            
+
+            ////step 2: search for the computed hashes in the cash from end to begining
+        
+            //// Put all file names in  directory into array.
+            //string[] ImagesArray = Directory.GetFiles(@"C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Processing Operation Pool\bin\Debug\cahce");
+            //string[] ImgesNames = new string[ImagesArray.Length];
+            
+            //for (int i = 0; i < ImagesArray.Length; i++)
             //{
-            //    string hash = r.HashCode();
-            //    hashName += "_" + r.HashCode();
-            //    scriptData += r.calcMatlabScript() + "\n";
+            //    string imageName = Path.GetFileName(ImagesArray[i]);
+            //    ImgesNames[i] = imageName;
+            //    //Debug.Write(ImgesNames[i] + "number " + i +" \n");
             //}
+            //List<string> ImgesNamesList = ImgesNames.ToList();
 
-            //scriptData += "imwrite('" + SCRIPT_PATH + "outimage" + hashName + "', im, 'bmp');";
-            //StreamWriter scriptFile = new System.IO.StreamWriter(SCRIPT_PATH + "script" + hashName);
-            //scriptFile.Write(scriptData);
-            //scriptFile.Close();
+
+
+
+            ////make the search fro ent to begining:
+
+
+
+            //// step 3: create the script
+
+            //    //3.1 load the latest image stage from the cache (or the selected image)
+            //     string script = "";
+
+
+            //    script += "im = imread('" + _selectedImagePath + "');\n";
+
+
+            //    //3.2 run all functions from that stage and so on and save Intermediate results
+
+
+            //     //3.3 save the final image result for the user: COPY the image to 
+            //     //the chosen location of the user but save the image in the cache
+
+
+
+
+
+            //string hashName = "";
+            ////string RootHash = "";
+            ////string hashName = "script";
+            ////string scriptData = "im = imread('" + _selectedImagePath + "');\n";
+
+            ////foreach (RootObject r in lbScript.Items)
+            ////{
+            ////    string hash = r.HashCode();
+            ////    hashName += "_" + r.HashCode();
+            ////    scriptData += r.calcMatlabScript() + "\n";
+            ////}
+
+            ////scriptData += "imwrite('" + SCRIPT_PATH + "outimage" + hashName + "', im, 'bmp');";
+            ////StreamWriter scriptFile = new System.IO.StreamWriter(SCRIPT_PATH + "script" + hashName);
+            ////scriptFile.Write(scriptData);
+            ////scriptFile.Close();
 
             return hashName;
         }
@@ -485,19 +562,20 @@ namespace Image_Processing_Operation_Pool
                 _listroot.functions = new List<RootObject>();
                 string file = openFileDialog1.FileName;
                 try
-                {                  
-                    string json = File.ReadAllText(openFileDialog1.InitialDirectory + openFileDialog1.FileName);
+                {                   
+                    string json = File.ReadAllText(openFileDialog1.InitialDirectory + openFileDialog1.FileName + ".script");
 
                     // parse json file and return list of functions as objects
                     var scriptsJson = parser.parseText(json);
-                   
-                    lbScript.DisplayMember = "functionName";
 
+                    lbScript.DisplayMember = "functionName";
                     foreach (RootObject r in scriptsJson)
-                    {                
+                    {
                         lbScript.Items.Add(r);
                         //tcFuncTab.Controls.Add( r.createForm(r.functionName, _hashtable));                   
-                    }           
+                    }
+                 
+                             
                 }
                 catch (IOException)
                 {

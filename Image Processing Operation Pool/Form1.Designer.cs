@@ -278,13 +278,6 @@
             this.loadJsonFileToolStripMenuItem.Text = "Load Script";
             this.loadJsonFileToolStripMenuItem.Click += new System.EventHandler(this.LoadScriptToolStripMenuItem_Click);
             // 
-            // backgroundWorker1
-            // 
-           // this.backgroundWorker1.WorkerReportsProgress = true;
-           // this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-           // this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
-           // this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(697, 439);

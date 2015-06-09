@@ -62,7 +62,7 @@ namespace Image_Processing_Operation_Pool
         /// 
         /// </summary>
         /// <returns></returns>
-        public string calcMatlabScript()
+        public string calcMatlabScript(string outIm)
         {
             string argList = "";
 
@@ -82,7 +82,8 @@ namespace Image_Processing_Operation_Pool
                 }
             }
 
-            return  "im = " + functionName + "(" +  argList + ");";
+            return  "im = " + functionName + "(" +  argList + "); \n" +
+                    "imwrite('" + outIm + "', im, 'bmp');"; 
         }
 
 
