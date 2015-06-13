@@ -88,25 +88,6 @@ namespace Image_Processing_Operation_Pool
 
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="functionName"></param>
-        /// <param name="hashtable"></param>
-        /// <returns></returns>
-        //public TabPage createForm(string functionName, Hashtable hashtable)
-        //{
-        //    RootObject root = null;
-        //    if (hashtable.ContainsKey(functionName))
-        //    {
-        //        root = (RootObject)hashtable[functionName];
-        //    }
-        //    if (root != null) 
-        //        return createFormByFunc(root);
-        //    else 
-        //        return null;
-        //}
-
-        /// <summary>
         /// the method creates a general form. for each functiont the method ModifyFormByType is called and designes it.
         /// </summary>
         /// <param name="root"> the function according witch the form is desighned</param>
@@ -140,21 +121,7 @@ namespace Image_Processing_Operation_Pool
         }
 
 
-        public void formSettings(Form functionForm)
-        {
-            functionForm.AutoSize = true;
-            //modify form:
-            FlowLayoutPanel flws = new FlowLayoutPanel();
-            flws.AutoScroll = true;
-            flws.FlowDirection = FlowDirection.LeftToRight;
-            flws.AutoSize = true;
-            flws.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top
-                | System.Windows.Forms.AnchorStyles.Bottom)
-                | System.Windows.Forms.AnchorStyles.Left)
-                | System.Windows.Forms.AnchorStyles.Right)));
-            //flws.AutoScroll = true;
-            functionForm.Controls.Add(flws);
-        }
+       
         /// <summary>
         /// the method adds comtrollers to the form according to the param type
         /// </summary>
