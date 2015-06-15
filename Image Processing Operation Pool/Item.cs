@@ -600,8 +600,15 @@ namespace Image_Processing_Operation_Pool
             explanation.ShowAlways = true;
             explanation.SetToolTip(ArrayTextBox, "Enter the array values separated by a comma. For example Matrix 3x3 : " + "\n" + "1" + "," + "2" + "," + "3" + ";" + "4" + "," + "5" + "," + "6" + ";" + "7" + "," + "8" + "," + "9");
 
-
+            ArrayTextBox.Text = param.Current_Value;
             //add event:
+
+            ArrayTextBox.TextChanged += new EventHandler((object sender, EventArgs e) =>
+            {
+                param.Current_Value = ArrayTextBox.Text;
+                //MessageBox.Show(param.Current_Value);
+            });
+
 
             funcTabPage.Controls.Add(flws);
             return funcTabPage;

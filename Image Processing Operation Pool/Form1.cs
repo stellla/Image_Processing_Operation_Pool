@@ -207,7 +207,7 @@ namespace Image_Processing_Operation_Pool
                         _funcNames.Add(r.functionName);// create list of names to fill the  function Box
                         foreach (var param in r.parameters)
                         {
-                           // param.Current_Value = param.Default;
+                            param.Current_Value = param.Current_Value;
                         }
                         lbFuncToolBox.Items.Add(r);
                         //tcFuncTab.Controls.Add( r.createForm(r.functionName, _hashtable));                   
@@ -361,7 +361,7 @@ namespace Image_Processing_Operation_Pool
 
 
             
-            //string scriptToDo = "";
+  
             for (int i = 0; i < lbScript.Items.Count; i++)
             {
                 
@@ -372,9 +372,9 @@ namespace Image_Processing_Operation_Pool
                 string ObjectHash = CalculateMD5HashFromString(listOfObjecs);
                 string Hash = _imageHash + "_" + ObjectHash + ".bmp";
                 hashes.Add(Hash);
-                Debug.Write(listOfObjecs + "\n");
-                Debug.Write("\n");
-                Debug.Write(Hash + "\n");
+               // Debug.Write(listOfObjecs + "\n");
+               // Debug.Write("\n");
+                //Debug.Write(Hash + "\n");
             }
 
             string startIm = _selectedImagePath;
@@ -393,7 +393,7 @@ namespace Image_Processing_Operation_Pool
 
                 hashIndex++;
             }
-           
+            MessageBox.Show(startIm);
 
 
             string hashName = "";
@@ -427,6 +427,8 @@ namespace Image_Processing_Operation_Pool
 
             //scriptData += 
             StreamWriter scriptFile = new System.IO.StreamWriter(SCRIPT_PATH + "script" + hashName);
+            Debug.Write(scriptData);
+            //Debug.Write(hashName);
             scriptFile.Write(scriptData);
             scriptFile.Close();
             string strCmdMatlab = "matlab.exe -nodisplay -nosplash -nodesktop -r \"run('" + SCRIPT_PATH + "script" + hashName + "');exit;\"";
