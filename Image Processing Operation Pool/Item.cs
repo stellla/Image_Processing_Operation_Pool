@@ -29,7 +29,12 @@ namespace Image_Processing_Operation_Pool
         Double_Range,
         String,
         String_Range,
-        Array
+        Array,
+
+
+        Var
+
+
     };
 
     // values is relevant only for "range" types, and is {min, max} for double_range and int_range, and {"v1", "v2", ...} 
@@ -47,6 +52,7 @@ namespace Image_Processing_Operation_Pool
         public string functionName { get; set; }
         public string description { get; set; }
         public List<Parameter> parameters { get; set; }
+        public List<Var> RetVal { get; set; }
 
 
         /// <summary>
@@ -82,8 +88,22 @@ namespace Image_Processing_Operation_Pool
                 }
             }
 
-            return  "im = " + functionName + "(" +  argList + "); \n" +
-                    "imwrite('" + outIm + "', im, 'bmp');"; 
+            return functionName + "(" + argList + "); \n";
+                    
+        }
+
+        public string buildRetVal()
+        {
+            string argList = "";
+
+            for (int i = 0; i < (RetVal.Count - 1); i++ )
+            {
+                argList += RetVal[i].varName + ", ";
+            }
+
+            argList += RetVal[(RetVal.Count - 1)].varName;
+
+            return "[" + argList + "]";
         }
 
 
@@ -115,6 +135,16 @@ namespace Image_Processing_Operation_Pool
                 //funcTabPage.Text = "Edit parameters for " + root.functionName;
                 ModifyFormByType(p, control, flws);
             }
+
+            
+            foreach (Var v in RetVal)
+            {
+                //funcTabPage.Text = "Edit parameters for " + root.functionName;
+                addVar(v, control, flws);
+            }
+
+
+            
 
 
             return control;
@@ -516,6 +546,58 @@ namespace Image_Processing_Operation_Pool
 
         }
 
+
+        private void addVar(Var v, Control funcTabPage, FlowLayoutPanel flws)
+        {
+            //add param name:
+            iTalk.iTalk_Label paramName = new iTalk.iTalk_Label();
+            paramName.ForeColor = System.Drawing.Color.Black;
+            paramName.Text = v.Name;
+            paramName.Font = new Font("Arial", 12);
+            flws.Controls.Add(paramName);
+
+            //add description:
+            ToolTip description = new ToolTip();
+            description.ToolTipIcon = ToolTipIcon.Info;
+            description.IsBalloon = true;
+            description.ShowAlways = true;
+            description.SetToolTip(paramName, v.Description);
+
+            //add controller:
+            iTalk.iTalk_TextBox_Small stringTextBox = new iTalk.iTalk_TextBox_Small();
+            //TextBox stringTextBox = new TextBox();
+            flws.Controls.Add(stringTextBox);
+
+            //add explanation:
+            ToolTip explanation = new ToolTip();
+            explanation.ToolTipIcon = ToolTipIcon.Info;
+            explanation.IsBalloon = true;
+            explanation.ShowAlways = true;
+            explanation.SetToolTip(stringTextBox, "enter a string value");
+
+            //set current value:
+            stringTextBox.Text = v.varName;
+
+
+            //add event:
+            //stringTextBox.TextChanged += new System.EventHandler((object sender, EventArgs e) =>
+            //{
+            //    param.Current_Value = stringTextBox.Text;
+            //});
+
+            stringTextBox.TextChanged += new EventHandler((object sender, EventArgs e) =>
+            {
+                v.varName = stringTextBox.Text;
+                //MessageBox.Show(param.Current_Value);
+            });
+            funcTabPage.Controls.Add(flws);
+
+        }
+
+
+
+
+
         /// <summary>
         /// adds parameter with multiple strings values possible, represented by ComboBox controll wich holds the options
         /// </summary>
@@ -620,9 +702,15 @@ namespace Image_Processing_Operation_Pool
             clone.functionName = functionName;
             clone.description = description;
             clone.parameters = new List<Parameter>();
+            clone.RetVal = new List<Var>();
             foreach (var param in parameters)
             {
                 clone.parameters.Add((Parameter)param.Clone());
+            }
+
+            foreach (var v in RetVal)
+            {
+                clone.RetVal.Add((Var)v.Clone());
             }
 
             return clone;

@@ -53,7 +53,6 @@
             this.chooseImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadJsonFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.iTalk_MenuStrip1.SuspendLayout();
@@ -72,7 +71,7 @@
             this.lbFuncToolBox.Location = new System.Drawing.Point(20, 126);
             this.lbFuncToolBox.Name = "lbFuncToolBox";
             this.lbFuncToolBox.ScrollAlwaysVisible = true;
-            this.lbFuncToolBox.Size = new System.Drawing.Size(120, 274);
+            this.lbFuncToolBox.Size = new System.Drawing.Size(173, 274);
             this.lbFuncToolBox.TabIndex = 5;
             // 
             // lbScript
@@ -80,10 +79,10 @@
             this.lbScript.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.lbScript.FormattingEnabled = true;
             this.lbScript.ItemHeight = 18;
-            this.lbScript.Location = new System.Drawing.Point(230, 126);
+            this.lbScript.Location = new System.Drawing.Point(299, 126);
             this.lbScript.Name = "lbScript";
             this.lbScript.ScrollAlwaysVisible = true;
-            this.lbScript.Size = new System.Drawing.Size(156, 274);
+            this.lbScript.Size = new System.Drawing.Size(189, 274);
             this.lbScript.TabIndex = 8;
             this.lbScript.SelectedValueChanged += new System.EventHandler(this.lbScript_SelectedValueChanged);
             // 
@@ -92,7 +91,7 @@
             this.gbFuncParamEdit.AutoSize = true;
             this.gbFuncParamEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.gbFuncParamEdit.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.gbFuncParamEdit.Location = new System.Drawing.Point(407, 116);
+            this.gbFuncParamEdit.Location = new System.Drawing.Point(510, 116);
             this.gbFuncParamEdit.Name = "gbFuncParamEdit";
             this.gbFuncParamEdit.Size = new System.Drawing.Size(209, 284);
             this.gbFuncParamEdit.TabIndex = 13;
@@ -118,7 +117,7 @@
             this.iTalk_Label1.BackColor = System.Drawing.Color.Transparent;
             this.iTalk_Label1.Font = new System.Drawing.Font("Segoe UI", 14F);
             this.iTalk_Label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(142)))), ((int)(((byte)(142)))));
-            this.iTalk_Label1.Location = new System.Drawing.Point(227, 95);
+            this.iTalk_Label1.Location = new System.Drawing.Point(294, 98);
             this.iTalk_Label1.Name = "iTalk_Label1";
             this.iTalk_Label1.Size = new System.Drawing.Size(64, 28);
             this.iTalk_Label1.TabIndex = 24;
@@ -155,7 +154,7 @@
             this.iTalk_Button_Up.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.iTalk_Button_Up.Image = null;
             this.iTalk_Button_Up.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iTalk_Button_Up.Location = new System.Drawing.Point(230, 406);
+            this.iTalk_Button_Up.Location = new System.Drawing.Point(326, 406);
             this.iTalk_Button_Up.Name = "iTalk_Button_Up";
             this.iTalk_Button_Up.Size = new System.Drawing.Size(61, 27);
             this.iTalk_Button_Up.TabIndex = 20;
@@ -169,7 +168,7 @@
             this.iTalk_Button_Down.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.iTalk_Button_Down.Image = null;
             this.iTalk_Button_Down.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iTalk_Button_Down.Location = new System.Drawing.Point(325, 406);
+            this.iTalk_Button_Down.Location = new System.Drawing.Point(393, 406);
             this.iTalk_Button_Down.Name = "iTalk_Button_Down";
             this.iTalk_Button_Down.Size = new System.Drawing.Size(61, 27);
             this.iTalk_Button_Down.TabIndex = 19;
@@ -183,7 +182,7 @@
             this.iTalk_Button_Remove.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.iTalk_Button_Remove.Image = null;
             this.iTalk_Button_Remove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iTalk_Button_Remove.Location = new System.Drawing.Point(148, 294);
+            this.iTalk_Button_Remove.Location = new System.Drawing.Point(215, 296);
             this.iTalk_Button_Remove.Name = "iTalk_Button_Remove";
             this.iTalk_Button_Remove.Size = new System.Drawing.Size(76, 32);
             this.iTalk_Button_Remove.TabIndex = 17;
@@ -197,7 +196,7 @@
             this.iTalk_Buttton_AddScript.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.iTalk_Buttton_AddScript.Image = null;
             this.iTalk_Buttton_AddScript.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iTalk_Buttton_AddScript.Location = new System.Drawing.Point(146, 238);
+            this.iTalk_Buttton_AddScript.Location = new System.Drawing.Point(215, 238);
             this.iTalk_Buttton_AddScript.Name = "iTalk_Buttton_AddScript";
             this.iTalk_Buttton_AddScript.Size = new System.Drawing.Size(76, 29);
             this.iTalk_Buttton_AddScript.TabIndex = 16;
@@ -278,13 +277,6 @@
             this.loadJsonFileToolStripMenuItem.Text = "Load Script";
             this.loadJsonFileToolStripMenuItem.Click += new System.EventHandler(this.LoadScriptToolStripMenuItem_Click);
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(697, 439);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(100, 23);
-            this.progressBar1.TabIndex = 28;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -292,7 +284,6 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(820, 492);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.iTalk_Label2);
             this.Controls.Add(this.iTalk_Label1);
             this.Controls.Add(this.iTalk_Button_Create);
@@ -340,7 +331,6 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chooseImageToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ToolStripMenuItem checkJsonOnlineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
