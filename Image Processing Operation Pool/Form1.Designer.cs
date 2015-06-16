@@ -34,7 +34,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lbFuncToolBox = new System.Windows.Forms.ListBox();
             this.lbScript = new System.Windows.Forms.ListBox();
-            this.gbFuncParamEdit = new System.Windows.Forms.GroupBox();
             this.metroStyleManager1 = new MetroFramework.Components.MetroStyleManager(this.components);
             this.iTalk_Label2 = new iTalk.iTalk_Label();
             this.iTalk_Label1 = new iTalk.iTalk_Label();
@@ -54,6 +53,7 @@
             this.loadJsonFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.ControlsPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.iTalk_MenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -85,17 +85,6 @@
             this.lbScript.Size = new System.Drawing.Size(189, 274);
             this.lbScript.TabIndex = 8;
             this.lbScript.SelectedValueChanged += new System.EventHandler(this.lbScript_SelectedValueChanged);
-            // 
-            // gbFuncParamEdit
-            // 
-            this.gbFuncParamEdit.AutoSize = true;
-            this.gbFuncParamEdit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.gbFuncParamEdit.Font = new System.Drawing.Font("Microsoft PhagsPa", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.gbFuncParamEdit.Location = new System.Drawing.Point(510, 116);
-            this.gbFuncParamEdit.Name = "gbFuncParamEdit";
-            this.gbFuncParamEdit.Size = new System.Drawing.Size(209, 284);
-            this.gbFuncParamEdit.TabIndex = 13;
-            this.gbFuncParamEdit.TabStop = false;
             // 
             // metroStyleManager1
             // 
@@ -130,7 +119,7 @@
             this.iTalk_Button_Create.ForeColor = System.Drawing.Color.White;
             this.iTalk_Button_Create.Image = null;
             this.iTalk_Button_Create.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iTalk_Button_Create.Location = new System.Drawing.Point(725, 400);
+            this.iTalk_Button_Create.Location = new System.Drawing.Point(772, 390);
             this.iTalk_Button_Create.Name = "iTalk_Button_Create";
             this.iTalk_Button_Create.Size = new System.Drawing.Size(72, 33);
             this.iTalk_Button_Create.TabIndex = 23;
@@ -217,7 +206,7 @@
             controlRenderer1.ColorTable = msColorTable1;
             controlRenderer1.RoundedEdges = true;
             this.iTalk_MenuStrip1.Renderer = controlRenderer1;
-            this.iTalk_MenuStrip1.Size = new System.Drawing.Size(780, 24);
+            this.iTalk_MenuStrip1.Size = new System.Drawing.Size(824, 24);
             this.iTalk_MenuStrip1.TabIndex = 27;
             this.iTalk_MenuStrip1.Text = "iTalk_MenuStrip1";
             // 
@@ -277,13 +266,22 @@
             this.loadJsonFileToolStripMenuItem.Text = "Load Script";
             this.loadJsonFileToolStripMenuItem.Click += new System.EventHandler(this.LoadScriptToolStripMenuItem_Click);
             // 
+            // ControlsPanel
+            // 
+            this.ControlsPanel.Location = new System.Drawing.Point(497, 126);
+            this.ControlsPanel.Name = "ControlsPanel";
+            this.ControlsPanel.Size = new System.Drawing.Size(264, 274);
+            this.ControlsPanel.TabIndex = 28;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(820, 492);
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
+            this.ClientSize = new System.Drawing.Size(864, 492);
+            this.Controls.Add(this.ControlsPanel);
             this.Controls.Add(this.iTalk_Label2);
             this.Controls.Add(this.iTalk_Label1);
             this.Controls.Add(this.iTalk_Button_Create);
@@ -292,7 +290,6 @@
             this.Controls.Add(this.iTalk_Button_Down);
             this.Controls.Add(this.iTalk_Button_Remove);
             this.Controls.Add(this.iTalk_Buttton_AddScript);
-            this.Controls.Add(this.gbFuncParamEdit);
             this.Controls.Add(this.lbScript);
             this.Controls.Add(this.lbFuncToolBox);
             this.Controls.Add(this.iTalk_MenuStrip1);
@@ -315,7 +312,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ListBox lbFuncToolBox;
         private System.Windows.Forms.ListBox lbScript;
-        private System.Windows.Forms.GroupBox gbFuncParamEdit;
         private MetroFramework.Components.MetroStyleManager metroStyleManager1;
         private iTalk.iTalk_Button_1 iTalk_Buttton_AddScript;
         private iTalk.iTalk_Button_1 iTalk_Button_Remove;
@@ -335,6 +331,7 @@
         private System.Windows.Forms.ToolStripMenuItem checkJsonOnlineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem loadJsonFileToolStripMenuItem;
+        private System.Windows.Forms.Panel ControlsPanel;
     }
 }
 

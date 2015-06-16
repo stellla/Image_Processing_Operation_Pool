@@ -54,6 +54,25 @@ namespace Image_Processing_Operation_Pool
         public List<Parameter> parameters { get; set; }
         public List<Var> RetVal { get; set; }
 
+        public object Clone()
+        {
+            RootObject clone = new RootObject();
+            clone.functionName = functionName;
+            clone.description = description;
+            clone.parameters = new List<Parameter>();
+            clone.RetVal = new List<Var>();
+            foreach (var param in parameters)
+            {
+                clone.parameters.Add((Parameter)param.Clone());
+            }
+
+            foreach (var v in RetVal)
+            {
+                clone.RetVal.Add((Var)v.Clone());
+            }
+
+            return clone;
+        }
 
         /// <summary>
         /// 
@@ -120,20 +139,28 @@ namespace Image_Processing_Operation_Pool
 
             control.AutoSize = true;
             //modify form:
-            FlowLayoutPanel flws = new FlowLayoutPanel();
+
+            //GroupBox groupBox = new GroupBox();
+            //control.Controls.Add(groupBox);
+           FlowLayoutPanel flws = new FlowLayoutPanel();
+            //flws.Dock = DockStyle.Fill;
+            //groupBox.Controls.Add(flws);
+
             flws.FlowDirection = FlowDirection.LeftToRight;
             flws.AutoSize = true;
             flws.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top
                 | System.Windows.Forms.AnchorStyles.Bottom)
                 | System.Windows.Forms.AnchorStyles.Left)
                 | System.Windows.Forms.AnchorStyles.Right)));
-            //flws.AutoScroll = true;
+            flws.AutoScroll = true;
             control.Controls.Add(flws);
+
 
             foreach (Parameter p in parameters)
             {
-                //funcTabPage.Text = "Edit parameters for " + root.functionName;
+                control.SuspendLayout();
                 ModifyFormByType(p, control, flws);
+                control.ResumeLayout();
             }
 
             
@@ -274,7 +301,7 @@ namespace Image_Processing_Operation_Pool
             explanation.ToolTipIcon = ToolTipIcon.Info;
             explanation.IsBalloon = true;
             explanation.ShowAlways = true;
-            explanation.SetToolTip(intUpDown, "Choose The int value for the parameter , the default value is " + param.Default);
+            explanation.SetToolTip(intUpDown, "Choose The int value for the parameter ");
 
             //set current value:
             int val;
@@ -696,25 +723,7 @@ namespace Image_Processing_Operation_Pool
             return funcTabPage;
         }
 
-        public object Clone()
-        {
-            RootObject clone = new RootObject();
-            clone.functionName = functionName;
-            clone.description = description;
-            clone.parameters = new List<Parameter>();
-            clone.RetVal = new List<Var>();
-            foreach (var param in parameters)
-            {
-                clone.parameters.Add((Parameter)param.Clone());
-            }
-
-            foreach (var v in RetVal)
-            {
-                clone.RetVal.Add((Var)v.Clone());
-            }
-
-            return clone;
-        }
+    
     }
 
   

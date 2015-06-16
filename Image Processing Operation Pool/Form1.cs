@@ -108,7 +108,7 @@ namespace Image_Processing_Operation_Pool
             if (null != lbScript.SelectedItem)
             {
                 //usr the createFormByFunc function to create parameters form
-                ((RootObject)lbScript.SelectedItem).createFormByFunc(gbFuncParamEdit);
+                ((RootObject)lbScript.SelectedItem).createFormByFunc(ControlsPanel);
             }
             
            // r.createForm(r.functionName, _hashtable)
@@ -145,7 +145,13 @@ namespace Image_Processing_Operation_Pool
             if (null != lbScript.SelectedItem)
             {
                 lbScript.Items.Remove(lbScript.SelectedItem);
+                if (lbScript.Items.Count == 0)
+                {
+                    ControlsPanel.Controls.Clear();
+                }
             }
+
+           
         }
 
         /// <summary>
@@ -549,6 +555,7 @@ namespace Image_Processing_Operation_Pool
                
             }
         }
+
 
     }
 }
