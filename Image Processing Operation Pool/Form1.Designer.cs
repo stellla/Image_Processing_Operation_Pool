@@ -46,7 +46,6 @@
             this.iTalk_MenuStrip1 = new iTalk.iTalk_MenuStrip();
             this.chooseJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkJsonOnlineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.chooseImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,6 +53,8 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.ControlsPanel = new System.Windows.Forms.Panel();
+            this.iTalk_Button_SortA2Z = new iTalk.iTalk_Button_1();
+            this.iTalk_Label3 = new iTalk.iTalk_Label();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.iTalk_MenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -95,7 +96,7 @@
             this.iTalk_Label2.BackColor = System.Drawing.Color.Transparent;
             this.iTalk_Label2.Font = new System.Drawing.Font("Segoe UI", 14F);
             this.iTalk_Label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(142)))), ((int)(((byte)(142)))));
-            this.iTalk_Label2.Location = new System.Drawing.Point(15, 95);
+            this.iTalk_Label2.Location = new System.Drawing.Point(15, 100);
             this.iTalk_Label2.Name = "iTalk_Label2";
             this.iTalk_Label2.Size = new System.Drawing.Size(141, 23);
             this.iTalk_Label2.TabIndex = 25;
@@ -108,7 +109,7 @@
             this.iTalk_Label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(142)))), ((int)(((byte)(142)))));
             this.iTalk_Label1.Location = new System.Drawing.Point(294, 98);
             this.iTalk_Label1.Name = "iTalk_Label1";
-            this.iTalk_Label1.Size = new System.Drawing.Size(64, 28);
+            this.iTalk_Label1.Size = new System.Drawing.Size(64, 26);
             this.iTalk_Label1.TabIndex = 24;
             this.iTalk_Label1.Text = "Script";
             // 
@@ -171,7 +172,7 @@
             this.iTalk_Button_Remove.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.iTalk_Button_Remove.Image = null;
             this.iTalk_Button_Remove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iTalk_Button_Remove.Location = new System.Drawing.Point(215, 296);
+            this.iTalk_Button_Remove.Location = new System.Drawing.Point(209, 296);
             this.iTalk_Button_Remove.Name = "iTalk_Button_Remove";
             this.iTalk_Button_Remove.Size = new System.Drawing.Size(76, 32);
             this.iTalk_Button_Remove.TabIndex = 17;
@@ -185,7 +186,7 @@
             this.iTalk_Buttton_AddScript.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.iTalk_Buttton_AddScript.Image = null;
             this.iTalk_Buttton_AddScript.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iTalk_Buttton_AddScript.Location = new System.Drawing.Point(215, 238);
+            this.iTalk_Buttton_AddScript.Location = new System.Drawing.Point(209, 238);
             this.iTalk_Buttton_AddScript.Name = "iTalk_Buttton_AddScript";
             this.iTalk_Buttton_AddScript.Size = new System.Drawing.Size(76, 29);
             this.iTalk_Buttton_AddScript.TabIndex = 16;
@@ -220,19 +221,10 @@
             // 
             // helpToolStripMenuItem
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.checkJsonOnlineToolStripMenuItem});
             this.helpToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // checkJsonOnlineToolStripMenuItem
-            // 
-            this.checkJsonOnlineToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.checkJsonOnlineToolStripMenuItem.Name = "checkJsonOnlineToolStripMenuItem";
-            this.checkJsonOnlineToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.checkJsonOnlineToolStripMenuItem.Text = "Check Json Online";
             // 
             // aboutToolStripMenuItem
             // 
@@ -273,6 +265,31 @@
             this.ControlsPanel.Size = new System.Drawing.Size(264, 274);
             this.ControlsPanel.TabIndex = 28;
             // 
+            // iTalk_Button_SortA2Z
+            // 
+            this.iTalk_Button_SortA2Z.BackColor = System.Drawing.Color.Transparent;
+            this.iTalk_Button_SortA2Z.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.iTalk_Button_SortA2Z.Image = global::Image_Processing_Operation_Pool.Properties.Resources._1434561580_sort_ascend;
+            this.iTalk_Button_SortA2Z.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iTalk_Button_SortA2Z.Location = new System.Drawing.Point(20, 406);
+            this.iTalk_Button_SortA2Z.Name = "iTalk_Button_SortA2Z";
+            this.iTalk_Button_SortA2Z.Size = new System.Drawing.Size(36, 37);
+            this.iTalk_Button_SortA2Z.TabIndex = 29;
+            this.iTalk_Button_SortA2Z.TextAlignment = System.Drawing.StringAlignment.Center;
+            this.iTalk_Button_SortA2Z.Click += new System.EventHandler(this.iTalk_Button_SortA2Z_Click);
+            // 
+            // iTalk_Label3
+            // 
+            this.iTalk_Label3.AutoSize = true;
+            this.iTalk_Label3.BackColor = System.Drawing.Color.Transparent;
+            this.iTalk_Label3.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.iTalk_Label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(142)))), ((int)(((byte)(142)))));
+            this.iTalk_Label3.Location = new System.Drawing.Point(492, 98);
+            this.iTalk_Label3.Name = "iTalk_Label3";
+            this.iTalk_Label3.Size = new System.Drawing.Size(107, 25);
+            this.iTalk_Label3.TabIndex = 30;
+            this.iTalk_Label3.Text = "Parameters";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -281,6 +298,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(864, 492);
+            this.Controls.Add(this.iTalk_Label3);
+            this.Controls.Add(this.iTalk_Button_SortA2Z);
             this.Controls.Add(this.ControlsPanel);
             this.Controls.Add(this.iTalk_Label2);
             this.Controls.Add(this.iTalk_Label1);
@@ -328,10 +347,11 @@
         private System.Windows.Forms.ToolStripMenuItem chooseImageToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.ToolStripMenuItem checkJsonOnlineToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem loadJsonFileToolStripMenuItem;
         private System.Windows.Forms.Panel ControlsPanel;
+        private iTalk.iTalk_Button_1 iTalk_Button_SortA2Z;
+        private iTalk.iTalk_Label iTalk_Label3;
     }
 }
 

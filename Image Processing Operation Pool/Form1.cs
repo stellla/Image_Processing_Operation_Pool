@@ -43,7 +43,7 @@ namespace Image_Processing_Operation_Pool
             iTalk_Buttton_AddTooltip();
             iTalk_Button_RemoveTooltip();
             iTalk_Button_CreateTooltip();
-
+            iTalk_Buttton_SortA2Z_Tooltip();
             Directory.CreateDirectory(SCRIPT_PATH);
         }
 
@@ -96,6 +96,26 @@ namespace Image_Processing_Operation_Pool
             iTalk_Button_EngineDescription.SetToolTip(iTalk_Button_Create, "Create script");
         }
 
+        public void iTalk_Buttton_SortA2Z_Tooltip()
+        {
+            ToolTip iTalk_Buttton_SortA2ZDescription = new ToolTip();
+
+            iTalk_Buttton_SortA2ZDescription.ToolTipIcon = ToolTipIcon.None;
+            iTalk_Buttton_SortA2ZDescription.IsBalloon = true;
+            iTalk_Buttton_SortA2ZDescription.ShowAlways = true;
+            iTalk_Buttton_SortA2ZDescription.SetToolTip(iTalk_Button_SortA2Z, "Sort List");
+        }
+
+
+        //public void iTalk_Buttton_Up_tooltip()
+        //{
+        //    ToolTip iTalk_Buttton_UptDescription = new ToolTip();
+
+        //    iTalk_Buttton_UptDescription.ToolTipIcon = ToolTipIcon.None;
+        //    iTalk_Buttton_UptDescription.IsBalloon = true;
+        //    iTalk_Buttton_UptDescription.ShowAlways = true;
+        //    iTalk_Buttton_UptDescription.SetToolTip(iTalk_Buttton_AddScript, "Add function to script");
+        //}
         /// <summary>
         /// on selected value (function name) presents the parameters for the function
         /// enables to change the values of the params and saves the selected 
@@ -434,9 +454,9 @@ namespace Image_Processing_Operation_Pool
 
             for (int i = hashIndex; i < lbScript.Items.Count; i++ )
             {
-                scriptData += ((RootObject)lbScript.Items[i]).buildRetVal() + " = ";
+                //scriptData += ((RootObject)lbScript.Items[i]).buildRetVal() + " = ";
                 scriptData += ((RootObject) lbScript.Items[i]).calcMatlabScript( "cache\\" +  hashes[i]) + "\n";
-                scriptData += "imwrite('" + "cache\\" + hashes[i] + "', im, 'bmp');\n"; 
+               
                 
                 //create json file
                 ListRoot listroot2 = new ListRoot();
@@ -453,10 +473,11 @@ namespace Image_Processing_Operation_Pool
                 file.WriteLine(output);
                 file.Close();
             }
-            StreamWriter scriptFile = new System.IO.StreamWriter(SCRIPT_PATH + "script" + hashName);
+            StreamWriter scriptFile = new System.IO.StreamWriter(SCRIPT_PATH + "MyScript.m" + hashName);
             scriptFile.Write(scriptData);
             scriptFile.Close();
-            string strCmdMatlab = "matlab.exe -nodisplay -nosplash -nodesktop -r \"run('" + SCRIPT_PATH + "script" + hashName + "');exit;\"";
+            string strCmdMatlab = "matlab.exe -nodisplay -nosplash -nodesktop -r \"run('" + SCRIPT_PATH + "MyScript.m" + hashName + "');exit;\"";
+            Debug.Print(strCmdMatlab);
             System.Diagnostics.Process.Start("CMD.exe", strCmdMatlab);
 
             return hashName;
@@ -555,6 +576,15 @@ namespace Image_Processing_Operation_Pool
                
             }
         }
+
+        private void iTalk_Button_SortA2Z_Click(object sender, EventArgs e)
+        {
+            lbFuncToolBox.Sorted = true;
+        }
+
+
+
+
 
 
     }

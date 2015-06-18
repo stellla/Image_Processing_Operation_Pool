@@ -59,5 +59,15 @@ namespace Image_Processing_Operation_Pool.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1434561580_sort_ascend {
+            get {
+                object obj = ResourceManager.GetObject("1434561580_sort-ascend", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

@@ -61,15 +61,23 @@ namespace Image_Processing_Operation_Pool
             clone.description = description;
             clone.parameters = new List<Parameter>();
             clone.RetVal = new List<Var>();
-            foreach (var param in parameters)
+
+            if (null != parameters)
             {
-                clone.parameters.Add((Parameter)param.Clone());
+                foreach (var param in parameters)
+                {
+                    clone.parameters.Add((Parameter)param.Clone());
+                }
             }
 
-            foreach (var v in RetVal)
+            if (null != RetVal)
             {
-                clone.RetVal.Add((Var)v.Clone());
+                foreach (var v in RetVal)
+                {
+                    clone.RetVal.Add((Var)v.Clone());
+                }
             }
+           
 
             return clone;
         }
@@ -89,25 +97,38 @@ namespace Image_Processing_Operation_Pool
         /// <returns></returns>
         public string calcMatlabScript(string outIm)
         {
-            string argList = "";
+            string argList = "im ";
 
-            foreach (Parameter param in parameters)
-            {   
-                if (Type.Array == param.type)
-                {
-                    argList += "[" + param.Current_Value + "]" + ", ";
-                }
-                else if (Type.String == param.type || Type.String_Range == param.type)
-                {
-                    argList += "'" + param.Current_Value + "'" + ", "; 
-                }
-                else
-                {
-                    argList += param.Current_Value + ", ";
-                }
+            for (int i = 0; i < (RetVal.Count - 1); i++)
+            {
+                argList += RetVal[i].varName + ", ";
             }
 
-            return functionName + "(" + argList + "); \n";
+
+            if (null != parameters || 0 < parameters.Count)
+            {
+                for (int i = 0; i < (parameters.Count); i++)
+                {
+                    argList += ", ";
+                    var param = parameters[i];
+                    if (Type.Array == param.type)
+                    {
+                        argList += "[" + param.Current_Value + "]" ;
+                    }
+                    else if (Type.String == param.type || Type.String_Range == param.type)
+                    {
+                        argList += "'" + param.Current_Value + "'" ;
+                    }
+                    else
+                    {
+                        argList += param.Current_Value;
+                    }
+                }
+            }
+            
+            return "im = " + functionName + "(" + argList + "); \n" +
+                   "imwrite(im," + "'" + outIm + "', 'bmp');\n";
+          
                     
         }
 
@@ -302,6 +323,8 @@ namespace Image_Processing_Operation_Pool
             explanation.IsBalloon = true;
             explanation.ShowAlways = true;
             explanation.SetToolTip(intUpDown, "Choose The int value for the parameter ");
+            intUpDown.Maximum = Int32.MaxValue;
+            intUpDown.Minimum = Int32.MinValue;
 
             //set current value:
             int val;
