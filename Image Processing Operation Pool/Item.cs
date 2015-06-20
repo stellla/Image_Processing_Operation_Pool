@@ -588,14 +588,26 @@ namespace Image_Processing_Operation_Pool
             //});
 
             stringTextBox.TextChanged += new EventHandler((object sender, EventArgs e) =>
-            {
-                param.Current_Value = stringTextBox.Text;
-                //MessageBox.Show(param.Current_Value);
+            {                            
+                //input check: only letters are allowed for string parameter
+                foreach (char c in stringTextBox.Text)
+                if (Char.IsDigit(c))
+                {
+
+                    MessageBox.Show("Incorrect Input. Only letters are allowed", "Error", MessageBoxButtons.OK,
+                  MessageBoxIcon.Exclamation,
+                  MessageBoxDefaultButton.Button1);
+                    stringTextBox.Text = "";
+                    param.Current_Value = "";
+                }
+               else  param.Current_Value = stringTextBox.Text;           
             });
+            
+           
+
             funcTabPage.Controls.Add(flws);
 
         }
-
 
         private void addVar(Var v, Control funcTabPage, FlowLayoutPanel flws)
         {
@@ -738,7 +750,10 @@ namespace Image_Processing_Operation_Pool
             ArrayTextBox.TextChanged += new EventHandler((object sender, EventArgs e) =>
             {
                 param.Current_Value = ArrayTextBox.Text;
+
                 //MessageBox.Show(param.Current_Value);
+
+
             });
 
 

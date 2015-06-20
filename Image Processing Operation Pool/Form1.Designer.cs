@@ -72,8 +72,10 @@
             this.lbFuncToolBox.Location = new System.Drawing.Point(20, 126);
             this.lbFuncToolBox.Name = "lbFuncToolBox";
             this.lbFuncToolBox.ScrollAlwaysVisible = true;
+            this.lbFuncToolBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbFuncToolBox.Size = new System.Drawing.Size(173, 274);
             this.lbFuncToolBox.TabIndex = 5;
+            this.lbFuncToolBox.SelectedIndexChanged += new System.EventHandler(this.lbFuncToolBox_SelectedIndexChanged);
             // 
             // lbScript
             // 

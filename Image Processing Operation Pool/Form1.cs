@@ -480,7 +480,7 @@ namespace Image_Processing_Operation_Pool
             Debug.Print(strCmdMatlab);
             System.Diagnostics.Process.Start("CMD.exe", strCmdMatlab);
 
-            return hashName;
+            return hashName;    
         }
 
 
@@ -582,10 +582,27 @@ namespace Image_Processing_Operation_Pool
             lbFuncToolBox.Sorted = true;
         }
 
+        /// <summary>
+        /// show function description for every function in Functions box window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lbFuncToolBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ToolTip FunctionDexcription = new ToolTip();
 
-
-
-
+            FunctionDexcription.ToolTipIcon = ToolTipIcon.None;
+            FunctionDexcription.IsBalloon = true;
+            FunctionDexcription.ShowAlways = true;
+            int index = 0;
+            RootObject root = new RootObject();
+                if (index >= 0 && index < lbFuncToolBox.Items.Count)
+                {
+                   root.description = ((RootObject)lbFuncToolBox.SelectedItem).description;
+                   FunctionDexcription.SetToolTip(this.lbFuncToolBox, root.description);
+                }
+            
+        }
 
     }
 }
