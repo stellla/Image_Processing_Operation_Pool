@@ -309,19 +309,16 @@ namespace Image_Processing_Operation_Pool
 
         private void pictureBox1_MouseEnter(object sender, EventArgs e)
         {
-            pictureBox2.Visible = true;
-            pictureBox2.BringToFront();
-            pictureBox2.ImageLocation = _selectedImagePath;
+            pictureBox3.Visible = true;
+            pictureBox3.BringToFront();
+            pictureBox3.ImageLocation = _selectedImagePath;
         }
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
-            pictureBox2.Visible = false;
-            pictureBox2.SendToBack();
+            pictureBox3.Visible = false;
+            pictureBox3.SendToBack();
         }
-        private void pictureBox2_MouseLeave(object sender, EventArgs e)
-        {
-            
-        }
+
 
 
         /// <summary>
@@ -631,6 +628,9 @@ namespace Image_Processing_Operation_Pool
             
         }
 
+
+
+
         private void createJsonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
@@ -644,6 +644,22 @@ namespace Image_Processing_Operation_Pool
             else
             {
 
+            }
+        }
+
+        private void lbScript_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ToolTip FunctionDexcription = new ToolTip();
+
+            FunctionDexcription.ToolTipIcon = ToolTipIcon.None;
+            FunctionDexcription.IsBalloon = true;
+            FunctionDexcription.ShowAlways = true;
+            int index = 0;
+            RootObject root = new RootObject();
+            if (index >= 0 && index < lbScript.Items.Count)
+            {
+                root.description = ((RootObject)lbScript.SelectedItem).description;
+                FunctionDexcription.SetToolTip(this.lbScript, root.description);
             }
         }
 

@@ -38,7 +38,6 @@
             this.iTalk_Label2 = new iTalk.iTalk_Label();
             this.iTalk_Label1 = new iTalk.iTalk_Label();
             this.iTalk_Button_Create = new iTalk.iTalk_Button_2();
-            this.iTalk_Icon_Info1 = new iTalk.iTalk_Icon_Info();
             this.iTalk_Button_Up = new iTalk.iTalk_Button_1();
             this.iTalk_Button_Down = new iTalk.iTalk_Button_1();
             this.iTalk_Button_Remove = new iTalk.iTalk_Button_1();
@@ -54,13 +53,16 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.ControlsPanel = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.iTalk_Button_SortA2Z = new iTalk.iTalk_Button_1();
             this.iTalk_Label3 = new iTalk.iTalk_Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.iTalk_MenuStrip1.SuspendLayout();
             this.ControlsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -93,6 +95,7 @@
             this.lbScript.ScrollAlwaysVisible = true;
             this.lbScript.Size = new System.Drawing.Size(189, 274);
             this.lbScript.TabIndex = 8;
+            this.lbScript.SelectedIndexChanged += new System.EventHandler(this.lbScript_SelectedIndexChanged);
             this.lbScript.SelectedValueChanged += new System.EventHandler(this.lbScript_SelectedValueChanged);
             // 
             // metroStyleManager1
@@ -135,16 +138,6 @@
             this.iTalk_Button_Create.Text = "Create";
             this.iTalk_Button_Create.TextAlignment = System.Drawing.StringAlignment.Center;
             this.iTalk_Button_Create.Click += new System.EventHandler(this.iTalk_Button_Create_Click);
-            // 
-            // iTalk_Icon_Info1
-            // 
-            this.iTalk_Icon_Info1.BackColor = System.Drawing.Color.White;
-            this.iTalk_Icon_Info1.ForeColor = System.Drawing.Color.DimGray;
-            this.iTalk_Icon_Info1.Location = new System.Drawing.Point(767, 87);
-            this.iTalk_Icon_Info1.Name = "iTalk_Icon_Info1";
-            this.iTalk_Icon_Info1.Size = new System.Drawing.Size(33, 39);
-            this.iTalk_Icon_Info1.TabIndex = 22;
-            this.iTalk_Icon_Info1.Text = "iTalk_Icon_Info1";
             // 
             // iTalk_Button_Up
             // 
@@ -216,7 +209,7 @@
             controlRenderer1.ColorTable = msColorTable1;
             controlRenderer1.RoundedEdges = true;
             this.iTalk_MenuStrip1.Renderer = controlRenderer1;
-            this.iTalk_MenuStrip1.Size = new System.Drawing.Size(824, 24);
+            this.iTalk_MenuStrip1.Size = new System.Drawing.Size(881, 24);
             this.iTalk_MenuStrip1.TabIndex = 27;
             this.iTalk_MenuStrip1.Text = "iTalk_MenuStrip1";
             // 
@@ -277,15 +270,23 @@
             // 
             // ControlsPanel
             // 
-            this.ControlsPanel.Controls.Add(this.pictureBox2);
-            this.ControlsPanel.Location = new System.Drawing.Point(497, 126);
+            this.ControlsPanel.Controls.Add(this.pictureBox3);
+            this.ControlsPanel.Location = new System.Drawing.Point(502, 126);
             this.ControlsPanel.Name = "ControlsPanel";
             this.ControlsPanel.Size = new System.Drawing.Size(264, 274);
             this.ControlsPanel.TabIndex = 28;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(13, 12);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(240, 236);
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
             // pictureBox2
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(-3, 0);
+            this.pictureBox2.Location = new System.Drawing.Point(-285, -184);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(272, 307);
             this.pictureBox2.TabIndex = 0;
@@ -318,7 +319,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(767, 126);
+            this.pictureBox1.Location = new System.Drawing.Point(772, 132);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(69, 47);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -327,6 +328,17 @@
             this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
             this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(124)))), ((int)(((byte)(124)))));
+            this.label1.Location = new System.Drawing.Point(769, 104);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 25);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "Image";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -334,7 +346,9 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(864, 492);
+            this.ClientSize = new System.Drawing.Size(921, 566);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.iTalk_Label3);
             this.Controls.Add(this.iTalk_Button_SortA2Z);
@@ -342,7 +356,6 @@
             this.Controls.Add(this.iTalk_Label2);
             this.Controls.Add(this.iTalk_Label1);
             this.Controls.Add(this.iTalk_Button_Create);
-            this.Controls.Add(this.iTalk_Icon_Info1);
             this.Controls.Add(this.iTalk_Button_Up);
             this.Controls.Add(this.iTalk_Button_Down);
             this.Controls.Add(this.iTalk_Button_Remove);
@@ -360,6 +373,7 @@
             this.iTalk_MenuStrip1.ResumeLayout(false);
             this.iTalk_MenuStrip1.PerformLayout();
             this.ControlsPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -377,7 +391,6 @@
         private iTalk.iTalk_Button_1 iTalk_Button_Remove;
         private iTalk.iTalk_Button_1 iTalk_Button_Down;
         private iTalk.iTalk_Button_1 iTalk_Button_Up;
-        private iTalk.iTalk_Icon_Info iTalk_Icon_Info1;
         private iTalk.iTalk_Button_2 iTalk_Button_Create;
         private iTalk.iTalk_Label iTalk_Label1;
         private iTalk.iTalk_Label iTalk_Label2;
@@ -396,6 +409,8 @@
         private System.Windows.Forms.ToolStripMenuItem createJsonToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
 

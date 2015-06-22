@@ -478,6 +478,17 @@ namespace Image_Processing_Operation_Pool
             iTalkTextBox.TextChanged += new EventHandler((object sender, EventArgs e) =>
             {
                 param.Current_Value = iTalkTextBox.Text;
+                foreach (char c in iTalkTextBox.Text)
+                    if (Char.IsLetter(c))
+                    {
+
+                        MessageBox.Show("Incorrect Input. Only digits are allowed", "Error", MessageBoxButtons.OK,
+                      MessageBoxIcon.Exclamation,
+                      MessageBoxDefaultButton.Button1);
+                        iTalkTextBox.Text = "";
+                        param.Current_Value = "";
+                    }
+                    else param.Current_Value = iTalkTextBox.Text;  
                 //MessageBox.Show(param.Current_Value);
             });
 
