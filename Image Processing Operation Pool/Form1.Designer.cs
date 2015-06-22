@@ -44,20 +44,25 @@
             this.iTalk_Button_Remove = new iTalk.iTalk_Button_1();
             this.iTalk_Buttton_AddScript = new iTalk.iTalk_Button_1();
             this.iTalk_MenuStrip1 = new iTalk.iTalk_MenuStrip();
+            this.createJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chooseJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chooseImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadJsonFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.chooseImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadJsonFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.ControlsPanel = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.iTalk_Button_SortA2Z = new iTalk.iTalk_Button_1();
             this.iTalk_Label3 = new iTalk.iTalk_Label();
-            this.createJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.iTalk_MenuStrip1.SuspendLayout();
+            this.ControlsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog1
@@ -215,6 +220,14 @@
             this.iTalk_MenuStrip1.TabIndex = 27;
             this.iTalk_MenuStrip1.Text = "iTalk_MenuStrip1";
             // 
+            // createJsonToolStripMenuItem
+            // 
+            this.createJsonToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.createJsonToolStripMenuItem.Name = "createJsonToolStripMenuItem";
+            this.createJsonToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.createJsonToolStripMenuItem.Text = "Create Json";
+            this.createJsonToolStripMenuItem.Click += new System.EventHandler(this.createJsonToolStripMenuItem_Click);
+            // 
             // chooseJsonToolStripMenuItem
             // 
             this.chooseJsonToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
@@ -222,6 +235,22 @@
             this.chooseJsonToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.chooseJsonToolStripMenuItem.Text = "Load Json";
             this.chooseJsonToolStripMenuItem.Click += new System.EventHandler(this.LoadJsonToolStripMenuItem_Click);
+            // 
+            // chooseImageToolStripMenuItem
+            // 
+            this.chooseImageToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.chooseImageToolStripMenuItem.Name = "chooseImageToolStripMenuItem";
+            this.chooseImageToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
+            this.chooseImageToolStripMenuItem.Text = "Choose Image";
+            this.chooseImageToolStripMenuItem.Click += new System.EventHandler(this.chooseImageToolStripMenuItem_Click);
+            // 
+            // loadJsonFileToolStripMenuItem
+            // 
+            this.loadJsonFileToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.loadJsonFileToolStripMenuItem.Name = "loadJsonFileToolStripMenuItem";
+            this.loadJsonFileToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
+            this.loadJsonFileToolStripMenuItem.Text = "Load Script";
+            this.loadJsonFileToolStripMenuItem.Click += new System.EventHandler(this.LoadScriptToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -246,28 +275,21 @@
             this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem1.Text = "toolStripMenuItem1";
             // 
-            // chooseImageToolStripMenuItem
-            // 
-            this.chooseImageToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.chooseImageToolStripMenuItem.Name = "chooseImageToolStripMenuItem";
-            this.chooseImageToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
-            this.chooseImageToolStripMenuItem.Text = "Choose Image";
-            this.chooseImageToolStripMenuItem.Click += new System.EventHandler(this.chooseImageToolStripMenuItem_Click);
-            // 
-            // loadJsonFileToolStripMenuItem
-            // 
-            this.loadJsonFileToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.loadJsonFileToolStripMenuItem.Name = "loadJsonFileToolStripMenuItem";
-            this.loadJsonFileToolStripMenuItem.Size = new System.Drawing.Size(78, 20);
-            this.loadJsonFileToolStripMenuItem.Text = "Load Script";
-            this.loadJsonFileToolStripMenuItem.Click += new System.EventHandler(this.LoadScriptToolStripMenuItem_Click);
-            // 
             // ControlsPanel
             // 
+            this.ControlsPanel.Controls.Add(this.pictureBox2);
             this.ControlsPanel.Location = new System.Drawing.Point(497, 126);
             this.ControlsPanel.Name = "ControlsPanel";
             this.ControlsPanel.Size = new System.Drawing.Size(264, 274);
             this.ControlsPanel.TabIndex = 28;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(-3, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(272, 307);
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
             // 
             // iTalk_Button_SortA2Z
             // 
@@ -294,13 +316,16 @@
             this.iTalk_Label3.TabIndex = 30;
             this.iTalk_Label3.Text = "Parameters";
             // 
-            // createJsonToolStripMenuItem
+            // pictureBox1
             // 
-            this.createJsonToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.createJsonToolStripMenuItem.Name = "createJsonToolStripMenuItem";
-            this.createJsonToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
-            this.createJsonToolStripMenuItem.Text = "Create Json";
-            this.createJsonToolStripMenuItem.Click += new System.EventHandler(this.createJsonToolStripMenuItem_Click);
+            this.pictureBox1.Location = new System.Drawing.Point(767, 126);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(69, 47);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 31;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseEnter += new System.EventHandler(this.pictureBox1_MouseEnter);
+            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
             // 
             // Form1
             // 
@@ -310,6 +335,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(864, 492);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.iTalk_Label3);
             this.Controls.Add(this.iTalk_Button_SortA2Z);
             this.Controls.Add(this.ControlsPanel);
@@ -333,6 +359,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).EndInit();
             this.iTalk_MenuStrip1.ResumeLayout(false);
             this.iTalk_MenuStrip1.PerformLayout();
+            this.ControlsPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -365,6 +394,8 @@
         private iTalk.iTalk_Button_1 iTalk_Button_SortA2Z;
         private iTalk.iTalk_Label iTalk_Label3;
         private System.Windows.Forms.ToolStripMenuItem createJsonToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 

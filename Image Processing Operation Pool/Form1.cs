@@ -33,7 +33,9 @@ namespace Image_Processing_Operation_Pool
         string _selectedImagePath = "";
         string _imageHash = "";
         public const string SCRIPT_PATH = "cache\\";
-        
+        Size _originalSize;   //**
+        Point _originalLoc;   //**
+        int _resize = 0;
 
         
         public Form1()
@@ -293,7 +295,8 @@ namespace Image_Processing_Operation_Pool
                             }
                         }
                         //MessageBox.Show(_selectedImagePath);
-
+                        pictureBox1.ImageLocation = _selectedImagePath;
+                       // pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize; 
                     }
                     catch (IOException)
                     {
@@ -302,6 +305,22 @@ namespace Image_Processing_Operation_Pool
                     }              
             }
 
+        }
+
+        private void pictureBox1_MouseEnter(object sender, EventArgs e)
+        {
+            pictureBox2.Visible = true;
+            pictureBox2.BringToFront();
+            pictureBox2.ImageLocation = _selectedImagePath;
+        }
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox2.Visible = false;
+            pictureBox2.SendToBack();
+        }
+        private void pictureBox2_MouseLeave(object sender, EventArgs e)
+        {
+            
         }
 
 
@@ -627,6 +646,16 @@ namespace Image_Processing_Operation_Pool
 
             }
         }
+
+   
+
+    
+
+
+  
+
+
+
 
     }
 }
