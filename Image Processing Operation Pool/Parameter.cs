@@ -27,6 +27,11 @@ namespace Image_Processing_Operation_Pool
         public IntRange IntRange { get; set; }
         public string Array { get; set; }
 
+        public Parameter()
+        {          
+            type = Type.Defualt;
+        }
+
         public object Clone()
         {
             Parameter clone = new Parameter();

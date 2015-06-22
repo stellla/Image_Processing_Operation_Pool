@@ -11,6 +11,7 @@ using System.Collections;
 using System.Diagnostics;
 using System.Drawing;
 using System.Security.Cryptography;
+using System.IO;
 
 namespace Image_Processing_Operation_Pool
 {
@@ -30,6 +31,7 @@ namespace Image_Processing_Operation_Pool
         String,
         String_Range,
         Array,
+        Defualt,
 
 
         Var
@@ -127,7 +129,7 @@ namespace Image_Processing_Operation_Pool
             }
             
             return "im = " + functionName + "(" + argList + "); \n" +
-                   "imwrite(im," + "'" + outIm + "', 'bmp');\n";
+                   "imwrite(im," + "'" + Path.GetFullPath(outIm) + "', 'bmp');\n";
           
                     
         }
@@ -212,6 +214,9 @@ namespace Image_Processing_Operation_Pool
 
             switch (param.type)
             {
+                case Type.Defualt:
+                    addDefualtPropToForm(param, funcTabPage, flws);
+                    break;
                 case Type.Array:
                     addArrayPropToForm(param, funcTabPage, flws);
                     break;
@@ -756,6 +761,32 @@ namespace Image_Processing_Operation_Pool
 
             });
 
+
+            funcTabPage.Controls.Add(flws);
+            return funcTabPage;
+        }
+
+
+        private Control addDefualtPropToForm(Parameter param, Control funcTabPage, FlowLayoutPanel flws)
+        {
+
+            // add param name:
+            iTalk.iTalk_Label paramName = new iTalk.iTalk_Label();
+            // Label paramName = new Label();
+            paramName.ForeColor = System.Drawing.Color.Black;
+            paramName.Text = param.Name;
+            paramName.Font = new Font("Arial", 12);
+            flws.Controls.Add(paramName);
+
+            iTalk.iTalk_Label defualt = new iTalk.iTalk_Label();
+            // Label paramName = new Label();
+            defualt.ForeColor = System.Drawing.Color.Black;
+            defualt.Text = "defualt";
+            defualt.Font = new Font("Arial", 12);
+            flws.Controls.Add(defualt);
+
+           
+           
 
             funcTabPage.Controls.Add(flws);
             return funcTabPage;

@@ -55,6 +55,7 @@
             this.ControlsPanel = new System.Windows.Forms.Panel();
             this.iTalk_Button_SortA2Z = new iTalk.iTalk_Button_1();
             this.iTalk_Label3 = new iTalk.iTalk_Label();
+            this.createJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.metroStyleManager1)).BeginInit();
             this.iTalk_MenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -199,11 +200,12 @@
             // iTalk_MenuStrip1
             // 
             this.iTalk_MenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createJsonToolStripMenuItem,
             this.chooseJsonToolStripMenuItem,
-            this.helpToolStripMenuItem,
-            this.aboutToolStripMenuItem,
             this.chooseImageToolStripMenuItem,
-            this.loadJsonFileToolStripMenuItem});
+            this.loadJsonFileToolStripMenuItem,
+            this.helpToolStripMenuItem,
+            this.aboutToolStripMenuItem});
             this.iTalk_MenuStrip1.Location = new System.Drawing.Point(20, 60);
             this.iTalk_MenuStrip1.Name = "iTalk_MenuStrip1";
             controlRenderer1.ColorTable = msColorTable1;
@@ -292,6 +294,14 @@
             this.iTalk_Label3.TabIndex = 30;
             this.iTalk_Label3.Text = "Parameters";
             // 
+            // createJsonToolStripMenuItem
+            // 
+            this.createJsonToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
+            this.createJsonToolStripMenuItem.Name = "createJsonToolStripMenuItem";
+            this.createJsonToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+            this.createJsonToolStripMenuItem.Text = "Create Json";
+            this.createJsonToolStripMenuItem.Click += new System.EventHandler(this.createJsonToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -354,6 +364,7 @@
         private System.Windows.Forms.Panel ControlsPanel;
         private iTalk.iTalk_Button_1 iTalk_Button_SortA2Z;
         private iTalk.iTalk_Label iTalk_Label3;
+        private System.Windows.Forms.ToolStripMenuItem createJsonToolStripMenuItem;
     }
 }
 

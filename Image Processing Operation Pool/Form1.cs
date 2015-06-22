@@ -476,9 +476,17 @@ namespace Image_Processing_Operation_Pool
             StreamWriter scriptFile = new System.IO.StreamWriter(SCRIPT_PATH + "MyScript.m" + hashName);
             scriptFile.Write(scriptData);
             scriptFile.Close();
-            string strCmdMatlab = "matlab.exe -nodisplay -nosplash -nodesktop -r \"run('" + SCRIPT_PATH + "MyScript.m" + hashName + "');exit;\"";
+            string strCmdMatlab = "/C matlab.exe -nodisplay -nosplash -nodesktop -r \"run('" +Path.GetFullPath( SCRIPT_PATH + "MyScript.m" + hashName )+ "');exit;\"";
             Debug.Print(strCmdMatlab);
-            System.Diagnostics.Process.Start("CMD.exe", strCmdMatlab);
+            //System.Diagnostics.Process.Start("CMD.exe", strCmdMatlab);
+
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            System.Diagnostics.ProcessStartInfo startInfo = new System.Diagnostics.ProcessStartInfo();
+            startInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Hidden;
+            startInfo.FileName = "cmd.exe";
+            startInfo.Arguments = strCmdMatlab;
+            process.StartInfo = startInfo;
+            process.Start();
 
             return hashName;    
         }
@@ -519,7 +527,7 @@ namespace Image_Processing_Operation_Pool
                 listroot2.functions.Add(r);
             }
             var output = JsonConvert.SerializeObject(listroot2.functions);
-            string fileNme = "cahce\\";
+            string fileNme = @"C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Processing Operation Pool\bin\Debug\cache";
             string scriptName = scriptHashName + ".script";
             StreamWriter file = new System.IO.StreamWriter(fileNme + scriptName);
             file.WriteLine(output);
@@ -602,6 +610,22 @@ namespace Image_Processing_Operation_Pool
                    FunctionDexcription.SetToolTip(this.lbFuncToolBox, root.description);
                 }
             
+        }
+
+        private void createJsonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+
+            if (result == DialogResult.OK) // Test result.
+            {
+
+                string file = openFileDialog1.FileName;
+                Parser.path2Json(file);
+            }
+            else
+            {
+
+            }
         }
 
     }
