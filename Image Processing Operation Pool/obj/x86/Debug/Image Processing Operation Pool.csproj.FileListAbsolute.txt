@@ -48,6 +48,6 @@ C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Pr
 C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Processing Operation Pool\bin\Debug\Simplify.Resources.xml
 C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Processing Operation Pool\bin\Debug\Simplify.Windows.Forms.xml
 C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Processing Operation Pool\obj\x86\Debug\Image Processing Operation Pool.csprojResolveAssemblyReference.cache
-C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Processing Operation Pool\obj\x86\Debug\Image_Processing_Operation_Pool.Form1.resources
 C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Processing Operation Pool\obj\x86\Debug\Image_Processing_Operation_Pool.Properties.Resources.resources
 C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Processing Operation Pool\obj\x86\Debug\Image Processing Operation Pool.csproj.GenerateResource.Cache
+C:\Users\StellaMel\Documents\Visual Studio 2010\Projects\Operation_Pool\Image Processing Operation Pool\obj\x86\Debug\Image_Processing_Operation_Pool.InterfaceForm.resources
