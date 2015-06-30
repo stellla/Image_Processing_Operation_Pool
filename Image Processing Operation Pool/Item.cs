@@ -268,7 +268,7 @@ namespace Image_Processing_Operation_Pool
             description.ToolTipIcon = ToolTipIcon.Info;
             description.IsBalloon = true;
             description.ShowAlways = true;
-            description.SetToolTip(paramName, param.Description);
+            //description.SetToolTip(paramName, param.Description);
 
             // add controllers for boolean selection
             iTalk.iTalk_RadioButton TrueRadioButton = new iTalk.iTalk_RadioButton();
@@ -455,7 +455,7 @@ namespace Image_Processing_Operation_Pool
             description.ToolTipIcon = ToolTipIcon.Info;
             description.IsBalloon = true;
             description.ShowAlways = true;
-            description.SetToolTip(paramName, param.Description);
+          //  description.SetToolTip(paramName, param.Description);
 
 
             //add controller:
@@ -521,7 +521,7 @@ namespace Image_Processing_Operation_Pool
             description.ToolTipIcon = ToolTipIcon.Info;
             description.IsBalloon = true;
             description.ShowAlways = true;
-            description.SetToolTip(paramName, param.Description);
+           // description.SetToolTip(paramName, param.Description);
 
             //add controller:
             iTalk.iTalk_TextBox_Small DoubleTextBox = new iTalk.iTalk_TextBox_Small();
@@ -697,7 +697,7 @@ namespace Image_Processing_Operation_Pool
             description.ToolTipIcon = ToolTipIcon.Info;
             description.IsBalloon = true;
             description.ShowAlways = true;
-            description.SetToolTip(paramName, param.Description);
+            //description.SetToolTip(paramName, param.Description);
 
             //add controller:
             iTalk.iTalk_ComboBox optionsComboBox = new iTalk.iTalk_ComboBox();

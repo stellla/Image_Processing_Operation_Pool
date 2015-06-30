@@ -116,8 +116,6 @@
     <Compile Include="DoubleRange.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Interface.cs" />
-    <Compile Include="Interface1.cs" />
     <Compile Include="InterfaceForm.cs">
       <SubType>Form</SubType>
     </Compile>
