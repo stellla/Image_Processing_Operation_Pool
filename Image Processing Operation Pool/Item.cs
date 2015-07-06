@@ -211,7 +211,7 @@ namespace Image_Processing_Operation_Pool
         /// <returns></returns>
         public Control ModifyFormByType(Parameter param, Control funcTabPage, FlowLayoutPanel flws)
         {
-
+            
             switch (param.type)
             {
                 case Type.Defualt:
