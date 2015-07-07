@@ -1,0 +1,94 @@
+[  
+  {  
+    "functionName":"figure",
+    "description":"description2",
+    "parameters":[  
+    ]
+  },
+  {  
+    "functionName":"imshow",
+    "description":"description2",
+    "parameters":[  
+    ]
+  },
+  {  
+    "functionName":"title",
+    "description":"description2",
+    "parameters":[  
+      {  
+        "Name":"title",
+        "Type":"String",
+        "String":"'original image'",
+        "Default":"'original image'",
+        "Description":"description2",
+        "Current_Value":""
+      }
+    ]
+  },
+    {  
+    "functionName":"edge",
+    "description":"detects edges in image I, where method specifies the edge detection method used.",
+    "parameters":[  
+	  {  
+        "Name":"method",
+        "Type":"String_Range",
+        "StringRange":["'Canny'","'Prewitt'","'Roberts'","'Sobel'","'zerocross'"],
+        "Default":"'Canny'",
+        "Description":"description2",
+        "Current_Value":"'Canny'"
+      },
+	   {  
+        "Name":"threshold",
+        "Type":"Int",
+		"Int":{},
+        "Default":"5",
+        "Description":"description",
+        "Current_Value":"5"
+      },
+    ]
+  },
+    {  
+    "functionName":"strel",
+    "description":"SE = strel(shape, parameters) creates a structuring element, SE, of the type specified by shape. This table lists all the supported shapes. Depending on shape, strel can take additional parameters. See the syntax descriptions that follow for details about creating each type of structuring element.",
+    "parameters":[  
+      {  
+        "Name":"title",
+        "Type":"String_Range",
+        "StringRange":["'arbitrary'","'diamond'","'disk'","'line'","'octagon'","'pair'","'periodicline'","'rectangle'","'square'"],
+        "Default":"'line'",
+        "Description":"description2",
+        "Current_Value":"'line'"
+      },
+	    {  
+        "Name":"NHOOD",
+        "Type":"Int",
+		"Int":{},
+        "Default":"3",
+        "Description":"description",
+        "Current_Value":"3"
+      },
+	    {  
+        "Name":"HEIGHT",
+        "Type":"Int",
+		"Int":{},
+        "Default":"90",
+        "Description":"description",
+        "Current_Value":"90"
+      }
+    ]
+  },
+    {  
+    "functionName":"imdilate",
+    "description":"IM2 = imdilate(IM,SE) dilates the grayscale, binary, or packed binary image IM, returning the dilated image, IM2. The argument SE is a structuring element object, or array of structuring element objects, returned by the strel function.",
+    "parameters":[  
+      {  
+        "Name":"title",
+        "Type":"String",
+        "String":"'original image'",
+        "Default":"'original image'",
+        "Description":"description2",
+        "Current_Value":""
+      }
+    ]
+  },
+]

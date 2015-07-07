@@ -1,0 +1,116 @@
+[  
+    {  
+    "functionName":"Step_2",
+    "description":"Detect Entire Cell",
+    "parameters":[  
+	  {  
+        "Name":"st_type",
+        "Type":"String_Range",
+        "StringRange":["Canny","Prewitt","Roberts","Sobel","zerocross"],
+        "Default":"Canny",
+        "Description":"description2",
+        "Current_Value":"Canny"
+      },
+	   {  
+        "Name":"fudgeFactor",
+        "Type":"Double",
+		"Double":{},
+        "Default":"0.5",
+        "Description":"description",
+        "Current_Value":"0.5"
+      }
+    ]
+	
+  },
+  
+  
+  {  
+    "functionName":"Step_3",
+    "description":"Dilate the Image.",
+    "parameters":[  
+	  {  
+        "Name":"LEN1",
+        "Type":"Int",
+        "Int":{},
+        "Default":"3",
+        "Description":"description2",
+        "Current_Value":"3"
+      },
+	   {  
+        "Name":"DEG1",
+        "Type":"Int",
+        "Int":{},
+        "Default":"90",
+        "Description":"description2",
+        "Current_Value":"90"
+      },
+	   {  
+        "Name":"LEN2",
+        "Type":"Int",
+        "Int":{},
+        "Default":"3",
+        "Description":"description2",
+        "Current_Value":"3"
+      },
+	  {  
+        "Name":"DEG2",
+        "Type":"Int",
+        "Int":{},
+        "Default":"0",
+        "Description":"description2",
+        "Current_Value":"0"
+      }
+	  
+    ]
+	
+  },
+  
+   {  
+    "functionName":"Step_4",
+    "description":"Fill Interior Gaps",
+    "parameters":[  
+	  {  
+        "Name":"fillType",
+        "Type":"String",
+        "String":{},
+        "Default":"holes",
+        "Description":"description2",
+        "Current_Value":"holes"
+      }
+    ]
+	
+  },
+  
+   {  
+    "functionName":"Step_5",
+    "description":"Remove Connected Objects on Border",
+    "parameters":[
+	{  
+        "Name":"connectivity",
+        "Type":"Int",
+        "Int":{},
+        "Default":"4",
+        "Description":"description2",
+        "Current_Value":"4"
+      }		 
+    ]
+	
+  },
+  
+   {  
+    "functionName":"Step_6",
+    "description":"Smoothen the Object",
+    "parameters":[
+	{  
+        "Name":"erodeMatrix",
+        "Type":"Array",
+        "Array":"",
+        "Default":"0,1,0;1,1,1;0,1,0",
+        "Description":"description2",
+        "Current_Value":"0,1,0;1,1,1;0,1,0"
+      }		 
+    ]	
+  }
+]
+
+
